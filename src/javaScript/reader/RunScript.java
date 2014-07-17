@@ -16,6 +16,7 @@ public class RunScript {
         InputStreamReader scriptReader = new InputStreamReader(input);
         ScriptEngineManager manager = new ScriptEngineManager();
         
+        //  获得当前环境中所支持的jdk引擎类型
         List<ScriptEngineFactory> engineFactories = manager.getEngineFactories();
         
         //  script指定使用哪种脚本引擎去解释读取的文件
