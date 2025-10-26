@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CN117614748B - 一种基于大语言模型的钓鱼邮件检测方法 
+        - Google Patents</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="referrer" content="origin-when-crossorigin">
+    <link rel="canonical" href="https://patents.google.com/patent/CN117614748B/zh">
+    <meta name="description" content="
+     本发明提供一种基于大语言模型的钓鱼邮件检测方法，属于人工智能技术领域，大语言模型不需要进行复杂的特征工程，将写有待测邮件的提示模板输入大语言模型，大语言模型就可以直接处理邮件内容，最后由大语言模型判断待测邮件是否为钓鱼邮件；而且，大语言模型具有出色的语义理解能力，可以深入识别和理解邮件的上下文内容，从而更准确地识别钓鱼邮件中应用的社会工程学技术和心理操纵技巧；此外，大语言模型具有强大的多语言处理能力，可以解决语言障碍问题，为其他语言的钓鱼邮件检测提供新的研究思路；最后，本发明同时使用没有开源的和开源的大语言模型进行钓鱼邮件检测，能够更好地研究开源大语言模型检测钓鱼邮件的性能和探索社会工程学领域的垂直大模型构建。 
+     
+   
+   ">
+    <meta name="DC.type" content="patent">
+    <meta name="DC.title" content="一种基于大语言模型的钓鱼邮件检测方法 
+       ">
+    <meta name="DC.date" content="2024-01-24" scheme="dateSubmitted">
+    <meta name="DC.description" content="
+     本发明提供一种基于大语言模型的钓鱼邮件检测方法，属于人工智能技术领域，大语言模型不需要进行复杂的特征工程，将写有待测邮件的提示模板输入大语言模型，大语言模型就可以直接处理邮件内容，最后由大语言模型判断待测邮件是否为钓鱼邮件；而且，大语言模型具有出色的语义理解能力，可以深入识别和理解邮件的上下文内容，从而更准确地识别钓鱼邮件中应用的社会工程学技术和心理操纵技巧；此外，大语言模型具有强大的多语言处理能力，可以解决语言障碍问题，为其他语言的钓鱼邮件检测提供新的研究思路；最后，本发明同时使用没有开源的和开源的大语言模型进行钓鱼邮件检测，能够更好地研究开源大语言模型检测钓鱼邮件的性能和探索社会工程学领域的垂直大模型构建。 
+     
+   
+   ">
+    <meta name="citation_patent_application_number" content="CN:202410095168.9A">
+    <meta name="citation_pdf_url" content="https://patentimages.storage.googleapis.com/70/f9/29/9626d1ae956f8e/CN117614748B.pdf">
+    <meta name="citation_patent_number" content="CN:117614748:B">
+    <meta name="DC.date" content="2024-04-30" scheme="issue">
+    <meta name="DC.contributor" content="伍淳华" scheme="inventor">
+    <meta name="DC.contributor" content="郑康锋" scheme="inventor">
+    <meta name="DC.contributor" content="张尚" scheme="inventor">
+    <meta name="DC.contributor" content="武斌" scheme="inventor">
+    <meta name="DC.contributor" content="Beijing University of Posts and Telecommunications" scheme="assignee">
+    <meta name="DC.relation" content="KR:102575129:B1" scheme="references">
+    <meta name="DC.relation" content="CN:117240575:A" scheme="references">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Product+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700">
+
+    <style>
+      
+      #gb { top: 15px; left: auto; right: 0; width: auto; min-width: 135px !important; }   
+      body { transition: none; }
+    </style>
+    <script></script>
+
+    <script>
+      window.version = 'patent-search.search_20250707_RC00';
+
+      function sendFeedback() {
+        userfeedback.api.startFeedback({
+          'productId': '713680',
+          'bucket': 'patent-search-web',
+          'productVersion': window.version,
+        });
+      }
+
+      window.experiments = {};
+      window.experiments.patentCountries = "ae,ag,al,am,ao,ap,ar,at,au,aw,az,ba,bb,bd,be,bf,bg,bh,bj,bn,bo,br,bw,bx,by,bz,ca,cf,cg,ch,ci,cl,cm,cn,co,cr,cs,cu,cy,cz,dd,de,dj,dk,dm,do,dz,ea,ec,ee,eg,em,ep,es,fi,fr,ga,gb,gc,gd,ge,gh,gm,gn,gq,gr,gt,gw,hk,hn,hr,hu,ib,id,ie,il,in,ir,is,it,jo,jp,ke,kg,kh,km,kn,kp,kr,kw,kz,la,lc,li,lk,lr,ls,lt,lu,lv,ly,ma,mc,md,me,mg,mk,ml,mn,mo,mr,mt,mw,mx,my,mz,na,ne,ng,ni,nl,no,nz,oa,om,pa,pe,pg,ph,pl,pt,py,qa,ro,rs,ru,rw,sa,sc,sd,se,sg,si,sk,sl,sm,sn,st,su,sv,sy,sz,td,tg,th,tj,tm,tn,tr,tt,tw,tz,ua,ug,us,uy,uz,vc,ve,vn,wo,yu,za,zm,zw";
+      
+      
+      window.experiments.keywordWizard = true;
+      
+      
+      
+      window.experiments.definitions = true;
+      window.experiments.plogs = true;
+
+      window.Polymer = {
+        dom: 'shady',
+        lazyRegister: true,
+      };
+    </script>
+
+    <script src="//www.gstatic.com/patent-search/frontend/patent-search.search_20250707_RC00/scs/compiled_dir/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="//www.gstatic.com/patent-search/frontend/patent-search.search_20250707_RC00/scs/compiled_dir/search-app-vulcanized.html">
+  </head>
+  <body unresolved>
+    
+    
+    <script></script>
+    <script src="//www.gstatic.com/patent-search/frontend/patent-search.search_20250707_RC00/scs/compiled_dir/search-app-vulcanized.js"></script>
+    <search-app>
+      
+      
+
+      <article class="result" itemscope itemtype="http://schema.org/ScholarlyArticle">
+  <h1 itemprop="pageTitle">CN117614748B - 一种基于大语言模型的钓鱼邮件检测方法 
+        - Google Patents</h1>
+  <span itemprop="title">一种基于大语言模型的钓鱼邮件检测方法 
+       </span>
+
+  <meta itemprop="type" content="patent">
+  <a href="https://patentimages.storage.googleapis.com/70/f9/29/9626d1ae956f8e/CN117614748B.pdf" itemprop="pdfLink">Download PDF</a>
+  <h2>Info</h2>
+
+  <dl>
+    <dt>Publication number</dt>
+    <dd itemprop="publicationNumber">CN117614748B</dd>
+    <meta itemprop="numberWithoutCodes" content="117614748">
+    <meta itemprop="kindCode" content="B">
+    <meta itemprop="publicationDescription" content="Granted patent for invention">
+    <span>CN117614748B</span>
+    <span>CN202410095168.9A</span>
+    <span>CN202410095168A</span>
+    <span>CN117614748B</span>
+    <span>CN 117614748 B</span>
+    <span>CN117614748 B</span>
+    <span>CN 117614748B</span>
+    <span>  </span>
+    <span> </span>
+    <span> </span>
+    <span>CN 202410095168 A</span>
+    <span>CN202410095168 A</span>
+    <span>CN 202410095168A</span>
+    <span>CN 117614748 B</span>
+    <span>CN117614748 B</span>
+    <span>CN 117614748B</span>
+
+    <dt>Authority</dt>
+    <dd itemprop="countryCode">CN</dd>
+    <dd itemprop="countryName">China</dd>
+
+    <dt>Prior art keywords</dt>
+    <dd itemprop="priorArtKeywords" repeat>email</dd>
+    <dd itemprop="priorArtKeywords" repeat>phishing</dd>
+    <dd itemprop="priorArtKeywords" repeat>language model</dd>
+    <dd itemprop="priorArtKeywords" repeat>gpt</dd>
+    <dd itemprop="priorArtKeywords" repeat>large language</dd>
+
+    <dt>Prior art date</dt>
+    <dd><time itemprop="priorArtDate" datetime="2024-01-24">2024-01-24</time></dd>
+
+    <dt>Legal status (The legal status is an assumption and is not a legal conclusion. Google has not performed a legal analysis and makes no representation as to the accuracy of the status listed.)</dt>
+    <dd itemprop="legalStatusIfi" itemscope>
+      <span itemprop="status">Active</span>
+    </dd>
+  </dl>
+
+  <dt>Application number</dt>
+  <dd itemprop="applicationNumber">CN202410095168.9A</dd>
+
+  <dt>Other languages</dt>
+  <dd itemprop="otherLanguages" itemscope repeat>
+    <a href="/patent/CN117614748B/en">
+      <span itemprop="name">English</span> (<span itemprop="code">en</span>)
+    </a>
+  </dd>
+
+  <dt>Other versions</dt>
+  <dd itemprop="directAssociations" itemscope repeat>
+    <a href="/patent/CN117614748A/zh">
+      <span itemprop="publicationNumber">CN117614748A</span>
+      (<span itemprop="primaryLanguage">zh</span>
+    </a>
+  </dd>
+
+  <dt>Inventor</dt>
+  <dd itemprop="inventor" repeat>伍淳华</dd>
+  <dd itemprop="inventor" repeat>郑康锋</dd>
+  <dd itemprop="inventor" repeat>张尚</dd>
+  <dd itemprop="inventor" repeat>武斌</dd>
+
+  <dt>Current Assignee (The listed assignees may be inaccurate. Google has not performed a legal analysis and makes no representation or warranty as to the accuracy of the list.)</dt>
+  <dd itemprop="assigneeCurrent" repeat>
+    Beijing University of Posts and Telecommunications
+  </dd>
+
+  <dt>Original Assignee</dt>
+  <dd itemprop="assigneeOriginal" repeat>Beijing University of Posts and Telecommunications</dd>
+
+  <dt>Priority date (The priority date is an assumption and is not a legal conclusion. Google has not performed a legal analysis and makes no representation as to the accuracy of the date listed.)</dt>
+  <dd><time itemprop="priorityDate" datetime="2024-01-24">2024-01-24</time></dd>
+
+  <dt>Filing date</dt>
+  <dd><time itemprop="filingDate" datetime="2024-01-24">2024-01-24</time></dd>
+
+  <dt>Publication date</dt>
+  <dd><time itemprop="publicationDate" datetime="2024-04-30">2024-04-30</time></dd>
+
+  
+  <dd itemprop="events" itemscope repeat>
+    <time itemprop="date" datetime="2024-01-24">2024-01-24</time>
+    <span itemprop="title">Application filed by Beijing University of Posts and Telecommunications</span>
+    <span itemprop="type">filed</span>
+    <span itemprop="critical" content="true" bool>Critical</span>
+    
+    
+    
+    <span itemprop="assigneeSearch">Beijing University of Posts and Telecommunications</span>
+  </dd>
+  <dd itemprop="events" itemscope repeat>
+    <time itemprop="date" datetime="2024-01-24">2024-01-24</time>
+    <span itemprop="title">Priority to CN202410095168.9A</span>
+    <span itemprop="type">priority</span>
+    <span itemprop="critical" content="true" bool>Critical</span>
+    
+    
+    <span itemprop="documentId">patent/CN117614748B/zh</span>
+    
+  </dd>
+  <dd itemprop="events" itemscope repeat>
+    <time itemprop="date" datetime="2024-02-27">2024-02-27</time>
+    <span itemprop="title">Publication of CN117614748A</span>
+    <span itemprop="type">publication</span>
+    <span itemprop="critical" content="true" bool>Critical</span>
+    
+    
+    <span itemprop="documentId">patent/CN117614748A/zh</span>
+    
+  </dd>
+  <dd itemprop="events" itemscope repeat>
+    <time itemprop="date" datetime="2024-04-30">2024-04-30</time>
+    <span itemprop="title">Application granted</span>
+    <span itemprop="type">granted</span>
+    <span itemprop="critical" content="true" bool>Critical</span>
+    
+    
+    
+    
+  </dd>
+  <dd itemprop="events" itemscope repeat>
+    <time itemprop="date" datetime="2024-04-30">2024-04-30</time>
+    <span itemprop="title">Publication of CN117614748B</span>
+    <span itemprop="type">publication</span>
+    <span itemprop="critical" content="true" bool>Critical</span>
+    
+    
+    <span itemprop="documentId">patent/CN117614748B/zh</span>
+    
+  </dd>
+  <dd itemprop="events" itemscope repeat>
+    <time itemprop="date">Status</time>
+    <span itemprop="title">Active</span>
+    <span itemprop="type">legal-status</span>
+    <span itemprop="critical" content="true" bool>Critical</span>
+    <span itemprop="current" content="true" bool>Current</span>
+    
+    
+    
+  </dd>
+  <dd itemprop="events" itemscope repeat>
+    <time itemprop="date" datetime="2044-01-24">2044-01-24</time>
+    <span itemprop="title">Anticipated expiration</span>
+    <span itemprop="type">legal-status</span>
+    <span itemprop="critical" content="true" bool>Critical</span>
+    
+    
+    
+    
+  </dd>
+
+  <h2>Links</h2>
+  <ul>
+    
+
+    <li itemprop="links" itemscope repeat>
+        <meta itemprop="id" content="espacenetLink">
+        <a href="https://worldwide.espacenet.com/publicationDetails/biblio?CC=CN&amp;NR=117614748B&amp;KC=B&amp;FT=D" itemprop="url" target="_blank"><span itemprop="text">Espacenet</span></a>
+      </li>
+      
+
+    
+
+    <li itemprop="links" itemscope repeat>
+      <meta itemprop="id" content="globalDossierLink">
+      <a href="https://globaldossier.uspto.gov/result/application/CN/202410095168/1" itemprop="url" target="_blank"><span itemprop="text">Global Dossier</span></a>
+    </li>
+
+    
+
+      
+
+      
+
+      
+      <li itemprop="links" itemscope repeat>
+        <meta itemprop="id" content="stackexchangeLink">
+        <a href="https://patents.stackexchange.com/questions/tagged/CN117614748B" itemprop="url"><span itemprop="text">Discuss</span></a>
+      </li>
+  </ul>
+
+  
+
+  
+
+  <section>
+    <h2>Classifications</h2>
+    <ul>
+      <li>
+        <ul itemprop="classifications" itemscope repeat>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">G</span>&mdash;<span itemprop="Description">PHYSICS</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">G06</span>&mdash;<span itemprop="Description">COMPUTING OR CALCULATING; COUNTING</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">G06F</span>&mdash;<span itemprop="Description">ELECTRIC DIGITAL DATA PROCESSING</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">G06F16/00</span>&mdash;<span itemprop="Description">Information retrieval; Database structures therefor; File system structures therefor</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">G06F16/30</span>&mdash;<span itemprop="Description">Information retrieval; Database structures therefor; File system structures therefor of unstructured textual data</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">G06F16/33</span>&mdash;<span itemprop="Description">Querying</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">G06F16/3331</span>&mdash;<span itemprop="Description">Query processing</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">G06F16/334</span>&mdash;<span itemprop="Description">Query execution</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">G06F16/3344</span>&mdash;<span itemprop="Description">Query execution using natural language analysis</span>
+            <meta itemprop="Leaf" content="true"><meta itemprop="FirstCode" content="true"><meta itemprop="IsCPC" content="true">
+          </li>
+        </ul>
+      </li>
+      <li>
+        <ul itemprop="classifications" itemscope repeat>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">G</span>&mdash;<span itemprop="Description">PHYSICS</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">G06</span>&mdash;<span itemprop="Description">COMPUTING OR CALCULATING; COUNTING</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">G06F</span>&mdash;<span itemprop="Description">ELECTRIC DIGITAL DATA PROCESSING</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">G06F16/00</span>&mdash;<span itemprop="Description">Information retrieval; Database structures therefor; File system structures therefor</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">G06F16/30</span>&mdash;<span itemprop="Description">Information retrieval; Database structures therefor; File system structures therefor of unstructured textual data</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">G06F16/35</span>&mdash;<span itemprop="Description">Clustering; Classification</span>
+            <meta itemprop="Leaf" content="true"><meta itemprop="IsCPC" content="true">
+          </li>
+        </ul>
+      </li>
+      <li>
+        <ul itemprop="classifications" itemscope repeat>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">G</span>&mdash;<span itemprop="Description">PHYSICS</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">G06</span>&mdash;<span itemprop="Description">COMPUTING OR CALCULATING; COUNTING</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">G06F</span>&mdash;<span itemprop="Description">ELECTRIC DIGITAL DATA PROCESSING</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">G06F40/00</span>&mdash;<span itemprop="Description">Handling natural language data</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">G06F40/30</span>&mdash;<span itemprop="Description">Semantic analysis</span>
+            <meta itemprop="Leaf" content="true"><meta itemprop="IsCPC" content="true">
+          </li>
+        </ul>
+      </li>
+      <li>
+        <ul itemprop="classifications" itemscope repeat>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">G</span>&mdash;<span itemprop="Description">PHYSICS</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">G06</span>&mdash;<span itemprop="Description">COMPUTING OR CALCULATING; COUNTING</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">G06N</span>&mdash;<span itemprop="Description">COMPUTING ARRANGEMENTS BASED ON SPECIFIC COMPUTATIONAL MODELS</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">G06N3/00</span>&mdash;<span itemprop="Description">Computing arrangements based on biological models</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">G06N3/02</span>&mdash;<span itemprop="Description">Neural networks</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">G06N3/04</span>&mdash;<span itemprop="Description">Architecture, e.g. interconnection topology</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">G06N3/045</span>&mdash;<span itemprop="Description">Combinations of networks</span>
+            <meta itemprop="Leaf" content="true"><meta itemprop="IsCPC" content="true">
+          </li>
+        </ul>
+      </li>
+      <li>
+        <ul itemprop="classifications" itemscope repeat>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">H</span>&mdash;<span itemprop="Description">ELECTRICITY</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">H04</span>&mdash;<span itemprop="Description">ELECTRIC COMMUNICATION TECHNIQUE</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">H04L</span>&mdash;<span itemprop="Description">TRANSMISSION OF DIGITAL INFORMATION, e.g. TELEGRAPHIC COMMUNICATION</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">H04L63/00</span>&mdash;<span itemprop="Description">Network architectures or network communication protocols for network security</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">H04L63/14</span>&mdash;<span itemprop="Description">Network architectures or network communication protocols for network security for detecting or protecting against malicious traffic</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">H04L63/1441</span>&mdash;<span itemprop="Description">Countermeasures against malicious traffic</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">H04L63/1483</span>&mdash;<span itemprop="Description">Countermeasures against malicious traffic service impersonation, e.g. phishing, pharming or web spoofing</span>
+            <meta itemprop="Leaf" content="true"><meta itemprop="IsCPC" content="true">
+          </li>
+        </ul>
+      </li>
+      <li>
+        <ul itemprop="classifications" itemscope repeat>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">H</span>&mdash;<span itemprop="Description">ELECTRICITY</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">H04</span>&mdash;<span itemprop="Description">ELECTRIC COMMUNICATION TECHNIQUE</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">H04L</span>&mdash;<span itemprop="Description">TRANSMISSION OF DIGITAL INFORMATION, e.g. TELEGRAPHIC COMMUNICATION</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">H04L9/00</span>&mdash;<span itemprop="Description">Cryptographic mechanisms or cryptographic arrangements for secret or secure communications; Network security protocols</span>
+            <meta itemprop="IsCPC" content="true">
+          </li>
+          <li itemprop="classifications" itemscope repeat>
+            <span itemprop="Code">H04L9/40</span>&mdash;<span itemprop="Description">Network security protocols</span>
+            <meta itemprop="Leaf" content="true"><meta itemprop="IsCPC" content="true">
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+  
+
+  
+
+  
+
+  <section>
+    <h2>Landscapes</h2>
+    <ul>
+      <li itemprop="landscapes" itemscope repeat>
+        <span itemprop="name">Engineering &amp; Computer Science</span>
+        (<span itemprop="type">AREA</span>)
+      </li>
+      <li itemprop="landscapes" itemscope repeat>
+        <span itemprop="name">Theoretical Computer Science</span>
+        (<span itemprop="type">AREA</span>)
+      </li>
+      <li itemprop="landscapes" itemscope repeat>
+        <span itemprop="name">General Engineering &amp; Computer Science</span>
+        (<span itemprop="type">AREA</span>)
+      </li>
+      <li itemprop="landscapes" itemscope repeat>
+        <span itemprop="name">Computer Security &amp; Cryptography</span>
+        (<span itemprop="type">AREA</span>)
+      </li>
+      <li itemprop="landscapes" itemscope repeat>
+        <span itemprop="name">Physics &amp; Mathematics</span>
+        (<span itemprop="type">AREA</span>)
+      </li>
+      <li itemprop="landscapes" itemscope repeat>
+        <span itemprop="name">General Physics &amp; Mathematics</span>
+        (<span itemprop="type">AREA</span>)
+      </li>
+      <li itemprop="landscapes" itemscope repeat>
+        <span itemprop="name">Data Mining &amp; Analysis</span>
+        (<span itemprop="type">AREA</span>)
+      </li>
+      <li itemprop="landscapes" itemscope repeat>
+        <span itemprop="name">Computational Linguistics</span>
+        (<span itemprop="type">AREA</span>)
+      </li>
+      <li itemprop="landscapes" itemscope repeat>
+        <span itemprop="name">Artificial Intelligence</span>
+        (<span itemprop="type">AREA</span>)
+      </li>
+      <li itemprop="landscapes" itemscope repeat>
+        <span itemprop="name">Databases &amp; Information Systems</span>
+        (<span itemprop="type">AREA</span>)
+      </li>
+      <li itemprop="landscapes" itemscope repeat>
+        <span itemprop="name">Computing Systems</span>
+        (<span itemprop="type">AREA</span>)
+      </li>
+      <li itemprop="landscapes" itemscope repeat>
+        <span itemprop="name">Health &amp; Medical Sciences</span>
+        (<span itemprop="type">AREA</span>)
+      </li>
+      <li itemprop="landscapes" itemscope repeat>
+        <span itemprop="name">Signal Processing</span>
+        (<span itemprop="type">AREA</span>)
+      </li>
+      <li itemprop="landscapes" itemscope repeat>
+        <span itemprop="name">General Health &amp; Medical Sciences</span>
+        (<span itemprop="type">AREA</span>)
+      </li>
+      <li itemprop="landscapes" itemscope repeat>
+        <span itemprop="name">Computer Networks &amp; Wireless Communication</span>
+        (<span itemprop="type">AREA</span>)
+      </li>
+      <li itemprop="landscapes" itemscope repeat>
+        <span itemprop="name">Life Sciences &amp; Earth Sciences</span>
+        (<span itemprop="type">AREA</span>)
+      </li>
+      <li itemprop="landscapes" itemscope repeat>
+        <span itemprop="name">Molecular Biology</span>
+        (<span itemprop="type">AREA</span>)
+      </li>
+      <li itemprop="landscapes" itemscope repeat>
+        <span itemprop="name">Evolutionary Computation</span>
+        (<span itemprop="type">AREA</span>)
+      </li>
+      <li itemprop="landscapes" itemscope repeat>
+        <span itemprop="name">Mathematical Physics</span>
+        (<span itemprop="type">AREA</span>)
+      </li>
+      <li itemprop="landscapes" itemscope repeat>
+        <span itemprop="name">Software Systems</span>
+        (<span itemprop="type">AREA</span>)
+      </li>
+      <li itemprop="landscapes" itemscope repeat>
+        <span itemprop="name">Biophysics</span>
+        (<span itemprop="type">AREA</span>)
+      </li>
+      <li itemprop="landscapes" itemscope repeat>
+        <span itemprop="name">Computer Hardware Design</span>
+        (<span itemprop="type">AREA</span>)
+      </li>
+      <li itemprop="landscapes" itemscope repeat>
+        <span itemprop="name">Biomedical Technology</span>
+        (<span itemprop="type">AREA</span>)
+      </li>
+      <li itemprop="landscapes" itemscope repeat>
+        <span itemprop="name">Audiology, Speech &amp; Language Pathology</span>
+        (<span itemprop="type">AREA</span>)
+      </li>
+      <li itemprop="landscapes" itemscope repeat>
+        <span itemprop="name">Information Transfer Between Computers</span>
+        (<span itemprop="type">AREA</span>)
+      </li>
+    </ul>
+  </section>
+
+
+  <section itemprop="abstract" itemscope>
+    <h2>Abstract</h2>
+    
+    <div itemprop="content" html><abstract mxw-id="PA668986236" lang="ZH" load-source="patent-office">
+    <div num="0001" class="abstract">本发明提供一种基于大语言模型的钓鱼邮件检测方法，属于人工智能技术领域，大语言模型不需要进行复杂的特征工程，将写有待测邮件的提示模板输入大语言模型，大语言模型就可以直接处理邮件内容，最后由大语言模型判断待测邮件是否为钓鱼邮件；而且，大语言模型具有出色的语义理解能力，可以深入识别和理解邮件的上下文内容，从而更准确地识别钓鱼邮件中应用的社会工程学技术和心理操纵技巧；此外，大语言模型具有强大的多语言处理能力，可以解决语言障碍问题，为其他语言的钓鱼邮件检测提供新的研究思路；最后，本发明同时使用没有开源的和开源的大语言模型进行钓鱼邮件检测，能够更好地研究开源大语言模型检测钓鱼邮件的性能和探索社会工程学领域的垂直大模型构建。</div>
+    </abstract>
+  </div>
+  </section>
+
+  <section itemprop="description" itemscope>
+    <h2>Description</h2>
+    
+    <div itemprop="content" html><div mxw-id="PDES460605932" lang="ZH" load-source="patent-office" class="description">
+    <invention-title lang="ZH" id="title1">一种基于大语言模型的钓鱼邮件检测方法</invention-title>
+    <technical-field>
+      <div id="p0001" class="description-paragraph">技术领域</div>
+      <div id="p0002" num="0001" class="description-paragraph">本发明属于人工智能技术领域，尤其涉及一种基于大语言模型的钓鱼邮件检测方法。</div>
+    </technical-field>
+    <background-art>
+      <div id="p0003" class="description-paragraph">背景技术</div>
+      <div id="p0004" num="0002" class="description-paragraph">钓鱼邮件攻击一般是指攻击者伪装成银行等权威部门的技术管理员，或者是收件人信任的朋友、家人等，通过发送电子邮件的方式诱导用户点击钓鱼链接或者下载附件，进而窃取用户的敏感信息或者在设备上植入恶意程序。近年来，随着互联网技术的快速发展，钓鱼邮件的数量也在日益增长。2022年APWG的第三季度报告显示，观察到的网络钓鱼攻击数量超过120万次，针对商业电子邮件攻击的数量增加了59%。Coremail发布的2023上半年研究报告显示，全国企业邮箱用户共收到1.4亿封钓鱼邮件，同比2022上半年增长40.89%。因此，对于个人和企业来说，如何防范钓鱼邮件攻击是网络安全的重要组成部分。</div>
+      <div id="p0005" num="0003" class="description-paragraph">随着生成式大语言模型在各种任务上展现的优异性能，人们也开始探索大语言模型在各个领域中的应用，但也带来了一系列安全风险，例如生成有害内容、数据泄露等。最近，在暗网上出现的基于大语言模型的网络犯罪工具WormGPT，对生成结果没有采取限制和安全过滤，专门用于恶意攻击活动。攻击者不需要掌握特定技能或语言，也能利用该工具生成针对目标的钓鱼邮件，大大提高了网络钓鱼攻击造成的威胁。</div>
+      <div id="p0006" num="0004" class="description-paragraph">大语言模型（Large Language Models，LLMs）生成的钓鱼邮件通常更加自然、语法正确且有深层次的语义关联，传统的机器学习或深度学习算法在检测时存在局限性，尤其是基于文本特征的检测方法。LLMs可以生成内容和风格具有多样性的钓鱼邮件，现有的检测方法不足以应对这种新兴的网络钓鱼攻击技术。</div>
+    </background-art>
+    <disclosure>
+      <div id="p0007" class="description-paragraph">发明内容</div>
+      <div id="p0008" num="0005" class="description-paragraph">为解决上述问题，本发明提供一种基于大语言模型的钓鱼邮件检测方法，结合提示模板和输入邮件生成提示，可以使LLMs识别邮件中可疑的钓鱼特征，量化邮件的钓鱼风险程度并判断是否为钓鱼邮件。</div>
+      <div id="p0009" num="0006" class="description-paragraph">一种基于大语言模型的钓鱼邮件检测方法，包括以下步骤：</div>
+      <div id="p0010" num="0007" class="description-paragraph">将待测邮件进行预处理，使得待测邮件的长度控制在设定范围内；</div>
+      <div id="p0011" num="0008" class="description-paragraph">将预处理后的待测邮件写入设定的提示模板中，其中，所述提示模板包括问题部分和邮件部分，且邮件部分用于写入预处理后的待测邮件，问题部分设置为：分析邮件的可疑因素以及是否包含社会工程学技术、分析邮件的URL、识别邮件意图、给出邮件是否为钓鱼邮件的结论及理由、以JSON格式输出判断结果；</div>
+      <div id="p0012" num="0009" class="description-paragraph">将写有预处理后的待测邮件的提示模板输入大语言模型，由大语言模型判断待测邮件是否为钓鱼邮件，其中，大语言模型为GPT-4、GPT-3.5或者开源大语言模型Llama2、BaiChuan2、ChatGLM2。</div>
+      <div id="p0013" num="0010" class="description-paragraph">进一步地，所述提示模板具体为：</div>
+      <div id="p0014" num="0011" class="description-paragraph">您是一名网络安全专家和社会工程学专家，负责检查电子邮件以确定它是钓鱼邮件还是合法邮件，要完成此任务，请执行以下子任务：</div>
+      <div id="p0015" num="0012" class="description-paragraph">1).分析邮件的可疑因素以及是否包含社会工程学技术：分析邮件发件人地址、主题和正文中是否存在用于网络钓鱼攻击的社会工程学技术，指出发件人地址、主题或正文中发现的任何可疑因素；</div>
+      <div id="p0016" num="0013" class="description-paragraph">2).分析邮件的URL：如果邮件正文包含URL链接，提取出URL的特征并判断是否可疑，如果邮件正文不包含URL链接，则回答无；</div>
+      <div id="p0017" num="0014" class="description-paragraph">3).识别邮件意图：结合邮件的上下文内容和关键词来分析发件人的意图是否可疑；</div>
+      <div id="p0018" num="0015" class="description-paragraph">4).陈述您对该电子邮件是钓鱼邮件还是合法邮件的结论，并解释理由，如果没有足够的证据做出判断，请回答“未知”；</div>
+      <div id="p0019" num="0016" class="description-paragraph">5).以JSON格式的输出您的判断结果，其中，判断结果包含以下关键字：</div>
+      <div id="p0020" num="0017" class="description-paragraph">- phishing_score: int，其中，phishing_score用于表示钓鱼风险，int表示风险等级，等级从低至高分别为0到10；</div>
+      <div id="p0021" num="0018" class="description-paragraph">- suspicious_url: boolean，其中，suspicious_url用于表示邮件中的URL链接是否可疑，如果可疑则boolean为True，如果不可疑则boolean为False；</div>
+      <div id="p0022" num="0019" class="description-paragraph">- phishing: boolean，其中，phishing用于表示该邮件是钓鱼邮件还是合法邮件，如果为钓鱼邮件则boolean为True，如果为合法邮件则boolean为False；</div>
+      <div id="p0023" num="0020" class="description-paragraph">限制：</div>
+      <div id="p0024" num="0021" class="description-paragraph">- 邮件内容可能被缩短和简化；</div>
+      <div id="p0025" num="0022" class="description-paragraph">社会工程学技术举例：</div>
+      <div id="p0026" num="0023" class="description-paragraph">- 紧迫感：用时间期限催促收信人立即采取行动；</div>
+      <div id="p0027" num="0024" class="description-paragraph">- 威胁恐吓：采用安全警告恐吓收信人；</div>
+      <div id="p0028" num="0025" class="description-paragraph">- 欲望诱惑：提供奖励引诱收信人点击链接；</div>
+      <div id="p0029" num="0026" class="description-paragraph">- 冒充亲友或同事：获取信任来骗取钱财；</div>
+      <div id="p0030" num="0027" class="description-paragraph">Email：</div>
+      <div id="p0031" num="0028" class="description-paragraph">{预处理后的待测邮件}。</div>
+      <div id="p0032" num="0029" class="description-paragraph">进一步地，将待测邮件进行预处理，使得待测邮件的长度控制在设定范围内具体为：</div>
+      <div id="p0033" num="0030" class="description-paragraph">计算待测邮件的token长度，如果token长度超出了设定范围，则按照设定范围中的最大长度对待测邮件进行截取，只保留设定范围内的邮件文本。</div>
+      <div id="p0034" num="0031" class="description-paragraph">进一步地，采用LoRA微调技术调整开源大语言模型Llama2、BaiChuan2、ChatGLM2的网络参数，以此提升开源大语言模型对钓鱼邮件的检测效果，调整方法为：</div>
+      <div id="p0035" num="0032" class="description-paragraph">基于ACM IWSPA 2018的反网络钓鱼试点中提供的IWSPA数据集构造初始数据集，其中，IWSPA数据集中包括仅包含正文内容的电子邮件IWSPA_NH、包含完整邮件头信息和正文内容的电子邮件IWSPA_H；</div>
+      <div id="p0036" num="0033" class="description-paragraph">剔除初始数据集中长度大于设定范围的邮件，仅保留长度在设定范围内的邮件作为筛选后数据集；</div>
+      <div id="p0037" num="0034" class="description-paragraph">将筛选后数据集按照1:1的比例切分成验证数据集和准监督微调数据集，其中，验证数据集用于GPT-3.5、GPT-4、Llama2、BaiChuan2以及ChatGLM2检测钓鱼邮件性能的比较；</div>
+      <div id="p0038" num="0035" class="description-paragraph">将准监督微调数据集输入GPT-4，得到GPT-4对准监督微调数据集中各邮件样本的判断结果和分析回答，去除判断结果错误以及低质量分析回答对应的邮件样本，将剩余邮件样本组成最终的监督微调数据集；</div>
+      <div id="p0039" num="0036" class="description-paragraph">将监督微调数据集分别输入开源大语言模型Llama2、BaiChuan2、ChatGLM2，判断设定的损失函数是否满足要求，若为是，则完成开源大语言模型网络参数的调整，若为否，则通过低秩分解矩阵来更新开源大语言模型中的权重矩阵，再将监督微调数据集分别输入权重矩阵调整后的开源大语言模型，重新判断损失函数是否满足要求；以此类推，直到完成开源大语言模型网络参数的调整。</div>
+      <div id="p0040" num="0037" class="description-paragraph">进一步地，采用准确率、精确度、召回率、F1分数、误报率、漏报率作为评估大语言模型检测钓鱼邮件性能的指标，其中，在所述指标的评估下，GPT-4检测钓鱼邮件的性能最优。</div>
+      <div id="p0041" num="0038" class="description-paragraph">进一步地，所述待测邮件为带有邮件头的邮件或者不带有邮件头的邮件，采用准确率、精确度、召回率、F1分数、误报率、漏报率作为评估大语言模型检测钓鱼邮件性能的指标，其中，在所述指标的评估下，大语言模型GPT-3.5、Llama2检测不带有邮件头的钓鱼邮件的性能更优，大语言模型GPT-4、BaiChuan2、ChatGLM2检测带有邮件头的钓鱼邮件的性能更优。</div>
+      <div id="p0042" num="0039" class="description-paragraph">进一步地，当发件人的邮件地址来自所属组织机构品牌的其他域名或者合法域名的多个子域名时，或者当邮件正文中提及的组织机构域名与发件人地址不匹配时，或者当邮件主题或正文中出现有关心理引导或操纵的关键词时，或者当合法的组织机构通过邮件进行广告宣传吸引用户时，或者邮件中包含的URL链接大于设定值时，或者邮件中包含的URL链接包含脱敏占位符时，大语言模型GPT-4检测钓鱼邮件的误报率将会提升。</div>
+      <div id="p0043" num="0040" class="description-paragraph">进一步地，当邮件不带有邮件头时，或者当邮件使用正式的通知语气且没有任何明显使用社会工程学技术的迹象时，或者GPT-4未能识别邮件中的社会工程学技术时，大语言模型GPT-4检测钓鱼邮件的漏报率将会提升。</div>
+      <div id="p0044" num="0041" class="description-paragraph">有益效果：</div>
+      <div id="p0045" num="0042" class="description-paragraph">1、本发明提供一种基于大语言模型的钓鱼邮件检测方法，大语言模型不需要进行复杂的特征工程，将写有待测邮件的提示模板输入大语言模型，大语言模型就可以直接处理邮件内容，最后由大语言模型判断待测邮件是否为钓鱼邮件；而且，大语言模型具有出色的语义理解能力，可以深入识别和理解邮件的上下文内容，从而更准确地识别钓鱼邮件中应用的社会工程学技术和心理操纵技巧；此外，大语言模型具有强大的多语言处理能力，可以解决语言障碍问题，为其他语言的钓鱼邮件检测提供新的研究思路；最后，本发明除了使用没有开源的GPT-4、GPT-3.5，本发明还使用开源大语言模型 Llama2、BaiChuan2和ChatGLM2进行钓鱼邮件检测，能够更好地研究开源大语言模型检测钓鱼邮件的性能和探索社会工程学领域的垂直大模型构建。</div>
+      <div id="p0046" num="0043" class="description-paragraph">2、本发明提供一种基于大语言模型的钓鱼邮件检测方法，基于思维链（Chain ofThought, CoT）的提示工程技巧，并结合钓鱼邮件包含的特征来创建提示模板；思维链技术模拟了人类在推理时的思维过程，将直接输入的任务目标分解为一系列中间任务，通过引导LLMs解决中间的推理任务才得到最终的输出答案；在数学、常识和符号推理等任务中应用思维链技术可以显著提高LLMs的性能；因此，本发明将钓鱼邮件检测任务分为五个子任务，能够引导LLMs在检测钓鱼邮件时进行更准确的推理分析。</div>
+      <div id="p0047" num="0044" class="description-paragraph">3、本发明提供一种基于大语言模型的钓鱼邮件检测方法，构造了用于钓鱼邮件检测的数据集IWSPA，并在GPT-3.5和GPT-4上对提出的方法进行了实验评估，GPT-4的准确率可达96.70%，F1分数可达96.68%，证明大语言模型LLMs在钓鱼邮件检测方面的有效性。</div>
+      <div id="p0048" num="0045" class="description-paragraph">4、本发明提供一种基于大语言模型的钓鱼邮件检测方法，采用LoRA微调技术调整开源大语言模型Llama2、BaiChuan2、ChatGLM2的网络参数，有效提升开源大语言模型对钓鱼邮件的检测效果。</div>
+      <div id="p0049" num="0046" class="description-paragraph">5、本发明提供一种基于大语言模型的钓鱼邮件检测方法，基于准确率、精确度、召回率、F1分数、误报率、漏报率等指标详细分析了大语言模型检测钓鱼邮件的能力，包括识别邮件意图和社会工程学技术等；通过对比GPT-4、GPT-3.5和开源大语言模型的实验结果，本发明分析了开源大语言模型存在的不足，为构建检测网络钓鱼攻击等安全垂直领域的大语言模型进行了探索工作。</div>
+    </disclosure>
+    <description-of-drawings>
+      <div id="p0050" class="description-paragraph">附图说明</div>
+      <div id="p0051" num="0047" class="description-paragraph">图1为本发明提供的一种基于大语言模型的钓鱼邮件检测方法的流程图；</div>
+      <div id="p0052" num="0048" class="description-paragraph">图2（a）为GPT-4输出结果中“phishing_score”和“suspicious_url”字段在IWSPA_LLMs_H_dev数据集的分布；</div>
+      <div id="p0053" num="0049" class="description-paragraph">图2（b）为GPT-4输出结果中“phishing_score”和“suspicious_url”字段在IWSPA_LLMs_NH_dev数据集的分布；</div>
+      <div id="p0054" num="0050" class="description-paragraph">图2（c）为GPT-3.5输出结果中“phishing_score”和“suspicious_url”字段在IWSPA_LLMs_H_dev数据集的分布；</div>
+      <div id="p0055" num="0051" class="description-paragraph">图2（d）为GPT-3.5输出结果中“phishing_score”和“suspicious_url”字段在IWSPA_LLMs_NH_dev数据集的分布；</div>
+      <div id="p0056" num="0052" class="description-paragraph">图3为phishing_score和suspicious_url的误报分布统计示意图；</div>
+      <div id="p0057" num="0053" class="description-paragraph">图4为phishing_score和suspicious_url的漏报分布统计示意图；</div>
+      <div id="p0058" num="0054" class="description-paragraph">图5（a）为IWSPA_LLMs_NH_dev数据集上LoRA微调前后误报率和漏报率的对比示意图；</div>
+      <div id="p0059" num="0055" class="description-paragraph">图5（b）为IWSPA_LLMs_H_dev数据集LoRA微调前后误报率和漏报率的对比示意图。</div>
+    </description-of-drawings>
+    <mode-for-invention>
+      <div id="p0060" class="description-paragraph">具体实施方式</div>
+      <div id="p0061" num="0056" class="description-paragraph">为了使本技术领域的人员更好地理解本申请方案，下面将结合本申请实施例中的附图，对本申请实施例中的技术方案进行清楚、完整地描述。</div>
+      <div id="p0062" num="0057" class="description-paragraph">本发明提供一种基于大语言模型的钓鱼邮件检测方法，根据钓鱼邮件包含的钓鱼特征和分析钓鱼邮件的步骤设计了提示模板，目的是指导LLMs对邮件进行全面的分析和推理。本发明提出的方法除了可以识别邮件的可疑因素，在输出结果中可以直观地对邮件的钓鱼风险程度进行量化，并标记邮件中的URL链接是否可疑。在本发明构造的IWSPA_LLMs数据集上，对GPT-4、GPT-3.5、开源大语言模型Llama2、BaiChuan2和ChatGLM2上进行了实验评估，其中GPT-4的检测性能最好，召回率可达99.21%，漏报率只有0.794%；现有的开源大语言模型不具备太多关于钓鱼邮件检测等社会工程学方面的知识，所以本发明采用LoRA（Low-Rank Adaptation）技术去微调模型，以提高Llama2等开源大语言模型分析钓鱼邮件和识别网络钓鱼攻击的性能；本发明的研究发现了LLMs防御新兴的网络安全攻击形式的潜力，这对构建网络安全垂直领域的大语言模型具有重要意义。</div>
+      <div id="p0063" num="0058" class="description-paragraph">如图1所示，一种基于大语言模型的钓鱼邮件检测方法，包括以下步骤：</div>
+      <div id="p0064" num="0059" class="description-paragraph">S1：将待测邮件进行预处理，使得待测邮件的长度控制在设定范围内。</div>
+      <div id="p0065" num="0060" class="description-paragraph">需要说明的是，传统的钓鱼邮件检测方法在分类任务前都会对电子邮件数据集进行预处理，例如将文本进行小写处理、删除特殊字符、停用词等，目的是去除邮件正文中的无关信息和冗余信息，筛选重要的文本特征并转换为统一格式。而LLMs是由大量的原始文本数据训练得到，这些数据包含了各种格式，也涵盖了特殊字符、停用词等，所以LLMs已经学会了识别和处理多样化的文本结构和表示。本发明在对邮件进行预处理时，仅需要对邮件长度进行控制，有些邮件包含较长的特殊编码或字符，可能会超出LLMs的上下文长度限制，所以本发明采用了简单的处理方式：计算待测邮件的token长度，如果token长度超出了设定范围，则按照设定范围最大长度对邮件进行截取，只保留限定范围内的邮件文本。</div>
+      <div id="p0066" num="0061" class="description-paragraph">S2：将预处理后的待测邮件写入设定的提示模板中，其中，所述提示模板包括问题部分和邮件部分，且邮件部分用于写入预处理后的待测邮件，问题部分设置为：分析邮件的可疑因素以及是否包含社会工程学技术、分析邮件的URL、识别邮件意图、给出邮件是否为钓鱼邮件的结论及理由、以JSON格式输出判断结果。</div>
+      <div id="p0067" num="0062" class="description-paragraph">S3：将写有预处理后的待测邮件的提示模板输入大语言模型，由大语言模型判断待测邮件是否为钓鱼邮件，其中，大语言模型为GPT-4、GPT-3.5或者开源大语言模型Llama2、BaiChuan2、ChatGLM2。</div>
+      <div id="p0068" num="0063" class="description-paragraph">需要说明的是，本发明通过访问OpenAI的API接口来调用GPT-4和GPT-3.5模型；同时，为了更好地研究开源大语言模型检测钓鱼邮件的性能和探索社会工程学领域的垂直大模型构建，本发明在实验中还对比了开源大语言模型：Llama2、BaiChuan2和ChatGLM2。</div>
+      <div id="p0069" num="0064" class="description-paragraph">进一步地，在本发明设计的提示模板中，首先分析了邮件头和正文内容中可能存在的可疑因素，并识别钓鱼攻击者利用的社会工程学和心理操纵技术；LLMs，如GPT-4能够处理复杂的上下文和文本结构，捕捉文本蕴含的关系和内在含义。因此，本发明提出的方法利用LLMs去理解邮件内容，并准确识别邮件的真实意图，除了邮件文本内容的分析，本发明还对邮件中存在的URLs进行检测，作为判断钓鱼邮件的依据之一；基于LLMs的方法可以直接对邮件进行检测，不需要收集大量的钓鱼邮件数据进行特征工程。</div>
+      <div id="p0070" num="0065" class="description-paragraph">具体的，根据输入的邮件，本发明创建了检测钓鱼邮件的提示，提示模板如表1所示；为了提高LLMs检测钓鱼邮件的性能，本发明基于思维链（Chain of Thought, CoT）的提示工程技巧，并结合钓鱼邮件包含的特征来创建提示模板；思维链技术模拟了人类在推理时的思维过程，将直接输入的任务目标分解为一系列中间任务，通过引导LLMs解决中间的推理任务才得到最终的输出答案；在数学、常识和符号推理等任务中应用思维链技术可以显著提高LLMs的性能；因此，本发明将钓鱼邮件检测任务分为五个子任务，以便引导LLMs在检测时进行更准确的推理分析：</div>
+      <div id="p0071" num="0066" class="description-paragraph">表1检测钓鱼邮件的提示模板</div>
+      <div id="p0072" num="0067" class="description-paragraph">
+        <span class="patent-image-not-available"></span>
+      </div>
+      <div id="p0073" num="0068" class="description-paragraph">（1）分析邮件的可疑因素以及是否包含社会工程学技术。本发明设计的提示要求LLMs从邮件包含的头信息和正文分析，而目前基于自然语言处理的钓鱼邮件检测方法是忽略了邮件头信息的；钓鱼邮件中常用的社会工程学技术包括利用紧迫感、威胁恐吓、欲望诱惑、冒充亲友或同事等，当LLMs分析出邮件包含这些语义信息或者发件人的邮箱地址很可疑时，则很大程度上表明是钓鱼邮件。</div>
+      <div id="p0074" num="0069" class="description-paragraph">（2）分析URL。如果邮件的上下文没有表达明显的钓鱼话术，那么可以从邮件中包含的URL链接进行分析。LLMs会提取URL的特征进行检测，例如域名、子域名级别、路径深度、重定向等。本发明设计的提示要求LLMs识别URL是否可疑。</div>
+      <div id="p0075" num="0070" class="description-paragraph">（3）识别邮件意图。钓鱼邮件中主题往往与正文内容存在不一致性，因此本发明设计的提示要求LLMs结合邮件的上下文去识别发件人的真实意图，并判断是否可疑。</div>
+      <div id="p0076" num="0071" class="description-paragraph">（4）给出该邮件是否为钓鱼邮件的结论，并解释理由。本发明设计的提示要求LLMs依据上面的任务分析给出结论，并提供判断的理由，也方便人们对钓鱼邮件更进一步的分析。</div>
+      <div id="p0077" num="0072" class="description-paragraph">（5）以JSON格式输出结果。本发明期望LLMs能够量化邮件可能是钓鱼攻击的风险，使用“phishing_score”字段表示，范围从0到10，0代表钓鱼风险最低，10代表钓鱼风险最高。如果邮件中的URL可疑，则期望“suspicious_url”字段返回为True。根据分析，如果邮件为钓鱼邮件，则期望“phishing”字段返回为True。</div>
+      <div id="p0078" num="0073" class="description-paragraph">因为有的电子邮件内容过长可能会超出LLMs上下文长度的token限制，token是指文本分词后的单个文本单元。GPT-3.5模型的上下文长度限制为4096个token，GPT-4模型的上下文长度限制为8192个token。在实验中使用的开源大语言模型Llama2的长度限制为4096个token，BaiChuan2的长度限制为4096个token，ChatGLM2的长度限制为32768个token，也有一些研究关于扩充LLMs的上下文长度，但为了更好地比较目前大语言模型检测钓鱼邮件的性能，本发明在研究中对输入包含邮件的提示模板进行优化，使得输入提示和输出结果的上下文长度满足4096个token限制。表2列出了每种文本数据类型的最大token数量，其中提示模板固定使用355个token。此外，本发明从构造数据集的每个类别中随机挑选10封电子邮件，根据GPT-4输出的token数量来估计输出结果的最大token数量。在GPT-4的输出结果中，最短的token数量为310，最长的token数量为372，平均token数量为348。因此本发明设置输出的最大token数量为375，从而推算得到输入邮件的最大token数量为3366，有关输入邮件的长度限制操作在预处理模块中已经介绍。</div>
+      <div id="p0079" num="0074" class="description-paragraph">表2提示模板、输入邮件、输出结果的token数量限制</div>
+      <div id="p0080" num="0075" class="description-paragraph">
+        <span class="patent-image-not-available"></span>
+      </div>
+      <div id="p0081" num="0076" class="description-paragraph">进一步地，由于开源的大语言模型因为参数量和训练数据量要远少于GPT-4和GPT-3.5，而且训练中并没有使用太多有关钓鱼邮件检测等领域的数据，所以Llama2、BaiChuan2、ChatGLM2等开源模型在直接检测钓鱼邮件上的性能要差很多；因此，本发明通过LoRA方法微调了开源大语言模型Llama2、BaiChuan2、ChatGLM2的网络参数，以此提升开源大语言模型对钓鱼邮件的检测性能，调整方法如下：</div>
+      <div id="p0082" num="0077" class="description-paragraph">步骤一、基于ACM IWSPA 2018的反网络钓鱼试点中提供的IWSPA数据集构造初始数据集，其中，IWSPA数据集中包括仅包含正文内容的电子邮件IWSPA_NH、包含完整邮件头信息和正文内容的电子邮件IWSPA_H；其中，IWSPA_NH和IWSPA_H数据详细信息如表3所示：</div>
+      <div id="p0083" num="0078" class="description-paragraph">表3 IWSPA数据集详细信息</div>
+      <div id="p0084" num="0079" class="description-paragraph">
+        <span class="patent-image-not-available"></span>
+      </div>
+      <div id="p0085" num="0080" class="description-paragraph">步骤二、剔除初始数据集中长度大于设定范围的邮件，仅保留长度在设定范围内的邮件作为筛选后数据集；也就是说，本发明首先需要对IWSPA_NH和IWSPA_H数据集进行去重清洗等操作，因为数据集中钓鱼邮件的占比较少，所以本发明尽可能保留所有的钓鱼邮件。如果钓鱼邮件的长度超出了3366个token数量的限制，则与预处理中的操作相同，对超出部分进行截取，只保留在长度范围内的邮件文本。而对于合法邮件，本发明计算其token长度，只保留完整长度满足限制范围内的邮件。对于筛选后的合法邮件，本发明按照钓鱼邮件在IWSPA_NH和IWSPA_H中的数量，采用相同比例来随机抽取合法邮件进行构造。表4给出了数据筛选后的详细信息，筛选后一共保留2216条数据，钓鱼邮件和合法邮件分别有1108条。</div>
+      <div id="p0086" num="0081" class="description-paragraph">表4筛选后的数据详细信息</div>
+      <div id="p0087" num="0082" class="description-paragraph">
+        <span class="patent-image-not-available"></span>
+      </div>
+      <div id="p0088" num="0083" class="description-paragraph">步骤三、将筛选后数据集按照1:1的比例切分成验证数据集和准监督微调数据集，其中，验证数据集用于GPT-3.5、GPT-4、Llama2、BaiChuan2以及ChatGLM2检测钓鱼邮件性能的比较；</div>
+      <div id="p0089" num="0084" class="description-paragraph">步骤四、将准监督微调数据集输入GPT-4，得到GPT-4对准监督微调数据集中各邮件样本的判断结果和分析回答，去除判断结果错误以及低质量分析回答对应的邮件样本，将剩余邮件样本组成最终的监督微调数据集；</div>
+      <div id="p0090" num="0085" class="description-paragraph">需要说明的是，本发明构造IWSPA_LLMs数据集的目的是为了比较不同的LLMs检测钓鱼邮件的性能以及在垂直领域中微调开源大语言模型的性能提升效果；验证数据集被直接用于GPT-3.5、GPT-4、Llama2、BaiChuan2以及ChatGLM2的检测性能比较，记作IWSPA_LLMs_dev，其中不包含邮件头信息的验证数据记作IWSPA_LLMs_NH_dev，包含头信息的验证数据记作IWSPA_LLMs_H_dev；最终的监督微调数据集记作IWSPA_LLMs_sft，其中不包含邮件头信息的微调数据集记作IWSPA_LLMs_NH_sft，包含头信息的微调数据集记作IWSPA_LLMs_H_sft；本发明构造的IWSPA_LLMs数据集有助于研究者在网络安全领域、社会工程学检测或攻击子领域中构建垂直领域大模型的研究，表5给出了IWSPA_LLMs数据集的详细信息。</div>
+      <div id="p0091" num="0086" class="description-paragraph">表5 IWSPA_LLMs数据集详细信息</div>
+      <div id="p0092" num="0087" class="description-paragraph">
+        <span class="patent-image-not-available"></span>
+      </div>
+      <div id="p0093" num="0088" class="description-paragraph">步骤五、将监督微调数据集分别输入开源大语言模型Llama2、BaiChuan2、ChatGLM2，判断设定的损失函数是否满足要求，若为是，则完成开源大语言模型网络参数的调整，若为否，则通过低秩分解矩阵来更新开源大语言模型中的权重矩阵，再将监督微调数据集分别输入权重矩阵调整后的开源大语言模型，重新判断损失函数是否满足要求；以此类推，直到完成开源大语言模型网络参数的调整。</div>
+      <div id="p0094" num="0089" class="description-paragraph">需要说明的是，LoRA（Low-Rank Adaptation，低秩适配）是一种用于LLMs的参数高效微调方式，其基本思想是冻结预训练模型的权重矩阵<span class="patent-image-not-available"></span>，通过添加低秩分解矩阵来近似参数更新权重矩阵/&gt;<span class="patent-image-not-available"></span>，其中/&gt;<span class="patent-image-not-available"></span>，/&gt;<span class="patent-image-not-available"></span>，以及秩/&gt;<span class="patent-image-not-available"></span>。矩阵/&gt;<span class="patent-image-not-available"></span>使用随机高斯分布进行初始化，矩阵/&gt;<span class="patent-image-not-available"></span>使用全零矩阵初始化，保证矩阵/&gt;<span class="patent-image-not-available"></span>在训练开始时为零矩阵，前向更新过程可以表示为/&gt;<span class="patent-image-not-available"></span>。使用LoRA进行微调时，只训练矩阵/&gt;<span class="patent-image-not-available"></span>和/&gt;<span class="patent-image-not-available"></span>可以减少适配下游任务的训练参数，大大降低了对算力的要求，而且实验结果表明在自然语言推理和生成等任务上与全参数微调的性能相当甚至更好。因此，在本发明提出的方法中使用LoRA微调去提高开源大语言模型在钓鱼邮件检测方面的性能。</div>
+      <div id="p0095" num="0090" class="description-paragraph">进一步地，为了评估LLMs检测钓鱼邮件的性能，本发明使用准确率、精确度、召回率、F1分数、误报率、漏报率作为评估指标。在评估过程中，使用TP（True Positive）表示正确预测为钓鱼邮件的数量；TN（True Negative）表示正确预测为合法邮件的数量；FP（FalsePositive）表示合法邮件被错误分类为钓鱼邮件的数量；FN（False Negative）表示钓鱼邮件被错误分类为合法邮件的数量。</div>
+      <div id="p0096" num="0091" class="description-paragraph">（1）准确率：邮件正确分类的数量占总数的比例：</div>
+      <div id="p0097" num="0092" class="description-paragraph"> <span class="patent-image-not-available"></span>（1）</div>
+      <div id="p0098" num="0093" class="description-paragraph">（2）精确度：预测为钓鱼的所有邮件中正确分类的比例：</div>
+      <div id="p0099" num="0094" class="description-paragraph"> <span class="patent-image-not-available"></span>（2）</div>
+      <div id="p0100" num="0095" class="description-paragraph">（3）召回率：标签为钓鱼的所有邮件中正确分类的比例：</div>
+      <div id="p0101" num="0096" class="description-paragraph"> <span class="patent-image-not-available"></span>（3）</div>
+      <div id="p0102" num="0097" class="description-paragraph">（4）F1分数：定义为精确度和召回率的调和平均值：</div>
+      <div id="p0103" num="0098" class="description-paragraph"> <span class="patent-image-not-available"></span>（4）</div>
+      <div id="p0104" num="0099" class="description-paragraph">（5）误报率（FPR）：合法邮件被错误分类的数量占所有合法邮件的比例：</div>
+      <div id="p0105" num="0100" class="description-paragraph"> <span class="patent-image-not-available"></span>（5）</div>
+      <div id="p0106" num="0101" class="description-paragraph">（6）漏报率（FNR）：钓鱼邮件被错误分类的数量占所有钓鱼邮件的比例：</div>
+      <div id="p0107" num="0102" class="description-paragraph"> <span class="patent-image-not-available"></span>（6）</div>
+      <div id="p0108" num="0103" class="description-paragraph">本发明对GPT-4的性能评估实验具体如下：</div>
+      <div id="p0109" num="0104" class="description-paragraph">（一）参数设置</div>
+      <div id="p0110" num="0105" class="description-paragraph">为了对比不同模型的效果，本发明将模型的上下文长度都统一设置为4096，参数temperature统一设置为0.8，其余参数保持不变。参数temperature表示采样温度，介于0和2之间，较高的值会使输出更加随机，而较低的值会使输出更加集中和确定性。在LoRA微调的实验中，参数秩r设置为8，学习率learning_rate大小为5e-5，批次大小batch_size设置为4，训练轮数epochs设置为10。Llama 2的微调模块设置为q_proj和v_proj，BaiChuan 2的微调模块设置为W_pack，ChatGLM2的微调模块设置为query_key_value。</div>
+      <div id="p0111" num="0106" class="description-paragraph">（二）实验结果分析</div>
+      <div id="p0112" num="0107" class="description-paragraph">因为本发明设计的提示中要求LLMs除了执行子任务的分析外，还需要以JSON格式输出最后的检测结果，所以本发明通过正则表达式将结果提取出来。如果JSON文本中的“phishing”字段的值为True，则将检测结果定义为钓鱼邮件；如果“phishing”字段的值为False，则为合法邮件。在验证集IWSPA_LLMs_dev上，GPT-4的输出结果中“phishing”字段总共有78个是“未知”，其中有35个为钓鱼邮件，43个为合法邮件；GPT-3.5的输出结果中“phishing”字段总共有65个是“未知”，其中31个为钓鱼邮件，34个为合法邮件。如果“phishing”字段的值为“未知”，本发明的处理方式是判断“suspicious_url”字段的值，如果为True，则检测结果为钓鱼邮件；如果为False，那么进一步判断“phishing_score”的值，如果值大于等于5，则最终判断为钓鱼邮件；否则判断为合法邮件。</div>
+      <div id="p0113" num="0108" class="description-paragraph">表6给出了GPT-3.5和GPT-4检测钓鱼邮件的结果，性能指标包括准确率、精确度、召回率、F1分数、TP、FP、TN、FN、FPR、FNR。从结果可以看出，GPT-4在检测钓鱼邮件方面的性能远超GPT-3.5。在没有邮件头信息的验证集IWSPA_LLMs_NH_dev上，GPT-4的性能要优于GPT-3.5约15%到20%，GPT-4的召回率为96.04%，F1分数为96.68%，而GPT-3.5的召回率为72.28%，F1分数为76.84%。GPT-3.5有48个误报的，GPT-4有8个误报；在漏报方面，GPT-3.5有84个，GPT-4有12个，GPT-3.5漏报的数量远超GPT-4。在验证集IWSPA_LLMs_H_dev上，GPT-4的准确性平均超出GPT-3.5约13%，GPT-4的F1分数为94.70%，GPT-3.5的F1分数为82.21%；而GPT-4的召回率甚至达到99.21%，只有2个漏报，这表明GPT-4对带有头信息的钓鱼邮件的检测效果更好。此外，实验结果中带邮件头信息的误报要多于不带邮件头信息的误报，GPT-4的误报有26个，GPT-3.5的误报有65个，说明邮件头信息会对模型判断合法邮件产生一定影响。GPT-4的误报率和漏报率都远低于GPT-3.5，表明GPT-4在检测真实的钓鱼邮件场景方面有着更高的准确性，面对邮件的多样性时性能要更加稳定。</div>
+      <div id="p0114" num="0109" class="description-paragraph">表6 GPT-3.5和GPT-4检测结果</div>
+      <div id="p0115" num="0110" class="description-paragraph">
+        <span class="patent-image-not-available"></span>
+      </div>
+      <div id="p0116" num="0111" class="description-paragraph">对于输出结果的“phishing_score”字段，GPT-4在IWSPA_LLMs_NH_dev数据集上的打分相对均匀，有93个5分，有99个7分以及80个8分。而GPT-3.5则更多地给出2分和7分，其中有134个2分，111个7分。在IWSPA_LLMs_H_dev数据上，GPT-4在钓鱼风险较高时给出的8分最多，有144个8分；GPT-3.5则更倾向于给7分和8分，有104个7分和102个8分。这表明GPT-4在带有邮件头信息的数据集上更能检测到中高危的钓鱼邮件。此外，GPT-4和GPT-3.5对于给出最高钓鱼风险（10分）的邮件数量都很少，尤其是GPT-3.5在IWSPA_LLMs_NH_dev上没有邮件的分数为10分。对于“suspicious_url”字段，GPT-4在两个验证集上检测到的可疑链接数量都要少于GPT-3.5，这表明GPT-4对于可疑链接尤其是在不带头信息的邮件中的判断标准更为严格。</div>
+      <div id="p0117" num="0112" class="description-paragraph">图2（a）~图2（d）分别展示了GPT-4和GPT-3.5输出结果中“phishing_score”和“suspicious_url”字段在IWSPA_LLMs_dev数据集的分布，其中，图2（a）~图2（d）分别中左边的11个柱状表示phishing_score从0分到10分的数量分布，右侧的两个柱状表示suspicious_url为true和uspicious_url为false的情况；从图2（a）~图2（d）分别中可以分析出GPT-4和GPT-3.5在评估钓鱼邮件风险上存在差异，这可能是由于训练数据、模型架构大小等因素导致的。GPT-4在不带邮件头信息的数据集上检测出的合法邮件数量多于GPT-3.5，这表明GPT-4在处理不完整数据时要更加保守。基于GPT-4的表现，本发明将在后续部分对所提方法的检测能力进行详细的分析。</div>
+      <div id="p0118" num="0113" class="description-paragraph">（三）GPT-4的输出样例分析</div>
+      <div id="p0119" num="0114" class="description-paragraph">如表7所示为钓鱼邮件示例，通过我们提出的方法使用GPT-4进行检测，表8给出了GPT-4的输出结果。这封钓鱼邮件冒充中科大官方的邮箱管理中心，利用真实的中秋节日让收件人放松警惕，并试图用“免费月饼领取”活动来诱惑收件人点击链接填写个人信息。GPT-4可以正确识别发件人和URL链接中的域名与中科大真实域名不符，确定是仿冒构造的域名地址。此外，GPT-4还能识别出邮件中可能利用的社会工程学技术，如利益诱惑、紧迫感等。在JSON格式的提交结果中，GPT-4给“phishing_score”的分数为9，并将“suspicious_url”和“phishing”字段都设置为True。</div>
+      <div id="p0120" num="0115" class="description-paragraph">表7钓鱼邮件示例</div>
+      <div id="p0121" num="0116" class="description-paragraph">
+        <span class="patent-image-not-available"></span>
+      </div>
+      <div id="p0122" num="0117" class="description-paragraph">表8 GPT-4检测结果</div>
+      <div id="p0123" num="0118" class="description-paragraph">
+        <span class="patent-image-not-available"></span>
+      </div>
+      <div id="p0124" num="0119" class="description-paragraph">（四）GPT-4的检测能力分析</div>
+      <div id="p0125" num="0120" class="description-paragraph">本发明根据GPT-4的输出结果，对其检测钓鱼邮件的能力进行分析。本发明按照方法中构造提示的思路，对识别钓鱼邮件中发件人地址、邮件主题、正文内容、URL链接和邮件意图这五个方面的依据进行详细说明，包括GPT-4的上下文理解和识别的社会工程学技术等。</div>
+      <div id="p0126" num="0121" class="description-paragraph">（1）发件人地址。识别发件人地址的域名是否可疑，是否冒充官方的电子邮箱地址，例如检测到合法域名的多级子域，修改或增加合法域名的字符进行构造等。GPT-4可以检测到邮件头信息中发件人地址和回复地址的不一致；以及发件人地址看似合法，而回复地址存在可疑性。此外，GPT-4通过邮件正文中出现的关键词和短语检测发件人地址是否可疑，例如发件人在正文说明自己所属机构后，发现与发件人邮箱地址并不匹配，识别出这是一种利用网络钓鱼的心理技巧，目的是建立和收件人之间的信任。</div>
+      <div id="p0127" num="0122" class="description-paragraph">（2）邮件主题。识别主题中利用的网络钓鱼社会工程学技术和心理操纵技巧。例如“安全漏洞修复”、“[紧急]账户停用通知”、“账户安全验证”等，GPT-4分析邮件主题营造了一种紧迫感和焦虑感，目的是让收件人立即采取行动。还有“中奖通知”、“税务退款”等，GPT-4结合邮件上下文识别出这是一种钓鱼攻击的典型技术，通过吸引收件人的兴趣来诱使其点击钓鱼链接。</div>
+      <div id="p0128" num="0123" class="description-paragraph">（3）邮件正文。首先，GPT-4可以对邮件正文中提及到的机构名进行检测，分析其很大可能是随机生成的，并不符合合法机构的命名规则。其次，可以检测到正文中的语言和文本风格，是否模仿组织机构经常使用的官方语言。此外，GPT-4会检测到邮件内容缺乏专业性，例如正文中存在的语法错误、拼写错误和奇怪的措辞，因为这些错误对于一些来自银行等专业机构的邮件来说并不常见。本发明还观察到GPT-4可以识别出来自官方域名的正式邮件中使用到了个人姓名，官方邮件通常会使用“管理员”或“技术团队”等，而不是以个人名义。同样，GPT-4也会检测到邮件正文中使用到的社会工程学技术，例如正文中声明用户账户将被立即暂停，识别出攻击者利用恐吓威胁来引导用户点击链接。</div>
+      <div id="p0129" num="0124" class="description-paragraph">（4）URL链接。GPT-4会提取URL链接的特征进行检测，包括使用近似的域名或多个子域名、URL的长度和路径深度、URL中的拼写错误或替代品牌名称、使用URL短链接隐藏真实目标地址、直接使用IP地址代替常规域名、文件路径或查询参数的异常等。例如邮件中的URL链接“www.bankofamerica.com/SingOn/Verify-Your-Identity_Profile-Form-do.htm”，GPT-4检测出链接存在拼写错误，登录的正确拼写是“SignIn”而不是“SingOn”，识别为可疑链接。</div>
+      <div id="p0130" num="0125" class="description-paragraph">（5）邮件意图。钓鱼邮件的主要意图是诱使收件人点击链接，通常会催促收件人点击链接更新其个人信息，或者“重新激活”账户。GPT-4可以识别出这种可疑行为，因为合法组织通常不会要求其用户通过电子邮件，尤其是通过可点击的链接进行此类操作。当钓鱼邮件催促收件人更新其个人资料时，GPT-4会识别出邮件意图，目的是窃取收件人的登录凭据等信息。</div>
+      <div id="p0131" num="0126" class="description-paragraph">（五）GPT-4误报分析</div>
+      <div id="p0132" num="0127" class="description-paragraph">在本发明的实验结果中，GPT-4在IWSPA_LLMs_dev数据集上一共有34个误报，图3展示了“phishing_score”和“suspicious_url”字段的分布统计。我们发现在误报中，存在不少“phishing_score”较高的情况，其中7分有18个，8分有5个，这说明GPT-4认为误报的合法邮件具有较高的钓鱼风险。对于“suspicious_url”字段，除了钓鱼分数为7的分布相同外，其余分数对应的False数量都要多于True。下面本发明将进一步对误报的邮件内容和检测结果进行分析。</div>
+      <div id="p0133" num="0128" class="description-paragraph">（1）发件人地址的域名识别错误。当发件人的邮件地址来自所属组织机构品牌的其他域名或者合法域名的多个子域名时，GPT-4有的时候会错误识别，认为该邮件地址是通过网络钓鱼攻击技巧构造的。当GPT-4对某个特定域名不了解或者无法识别合法域名的子域名时，就会发生这种情况。此外，当邮件正文中提及的组织机构域名与发件人地址不匹配时，也会容易提高钓鱼风险分数，即使发件人地址是合法域名。</div>
+      <div id="p0134" num="0129" class="description-paragraph">（2）邮件意图的错误识别。LLMs可以理解邮件的上下文内容，并分析邮件意图。当邮件主题或正文中出现有关心理引导或操纵的关键词时，GPT-4会错误识别邮件意图和社会工程学技术。在本发明的实验中，有一封关于股票网站吸引用户注册的邮件，主题中提及“[大量]立即注册”，以及正文中出现“股票赚钱”等关键词。GPT-4识别邮件使用了欲望诱惑的社会工程学技术，诱使收件人点击链接进行注册服务。当合法的组织机构通过邮件进行广告宣传吸引用户，尤其是出现金钱财务相关的关键词时，会提高GPT-4的钓鱼风险分数从而产生误报。</div>
+      <div id="p0135" num="0130" class="description-paragraph">（3）可疑URL链接的错误识别。GPT-4可以提取邮件中包含的URL链接特征，例如域名、URL长度等。在本发明的实验中，有一封关于视频分享的邮件，GPT-4正确识别该视频链接的域名是合法的，并且没有在邮件内容中检测到可疑因素，但由于视频链接中URL路径的长度过长，导致GPT-4认为该URL链接可疑，从而错误地将该邮件标记为钓鱼。</div>
+      <div id="p0136" num="0131" class="description-paragraph">（4）脱敏处理会放大可疑性。当邮件缺乏明确的上下文时，发件人的电子邮件地址和URL链接的脱敏处理会误导LLMs的判断。例如邮件中会出现以“domain.com”或者“&lt;&lt;link&gt;&gt;”作为敏感信息的占位符，当GPT-4没有检测出邮件利用社会工程学技术或者意图等其他可疑因素时，会对脱敏占位符过于敏感，放大脱敏占位符的可疑性，从而导致钓鱼风险分数较高以及可疑URL链接的误判，这种现象是产生误报的主要原因。</div>
+      <div id="p0137" num="0132" class="description-paragraph">（六）GPT-4漏报分析</div>
+      <div id="p0138" num="0133" class="description-paragraph">与GPT-3.5相比，GPT-4在IWSPA_LLMs_NH_dev数据集上的漏报减少了20%以上，在IWSPA_LLMs_H_dev数据集上的漏报减少了10%以上。在本发明的实验结果中，GPT-4在IWSPA_LLMs_dev数据集上一共有14个误报，图4展示了“phishing_score”和“suspicious_url”字段的分布统计，其中“phishing_score”字段最多有8个0分，所有分数对应的“suspicious_url”字段都为False。这表明GPT-4认为漏报的钓鱼邮件都具有较低的钓鱼风险且没有可疑的URL链接，下面本发明将进一步对漏报的邮件内容和检测结果进行分析。</div>
+      <div id="p0139" num="0134" class="description-paragraph">（1）邮件没有包含明显的可疑因素。实验结果表明不带邮件头的漏报要远多于带邮件头的漏报，这可能导致GPT-4利用的有用信息减少，无法全面分析给出结论。本发明观察到GPT-4漏报的钓鱼邮件中都只有较少的上下文内容，使用正式的通知语气且没有任何明显使用社会工程学技术的迹象，如紧迫感、威胁恐吓、欲望诱惑等，也没有提供任何URL链接，即使人工也很难根据正文内容作出钓鱼邮件的判断。此外，有的误报邮件的文本内容是说明附件接收的，GPT-4也给出了附件可能是恶意软件的说明，但邮件本身没有提供附件数据和更多的背景信息，且接收文件的一般行为也是正常的，GPT-4认为没有足够的证据进行判断。因此GPT-4给出的结论是在没有关于发件人、主题和确切URL信息的情况下，很难得出明确的结论判断是否为钓鱼邮件。</div>
+      <div id="p0140" num="0135" class="description-paragraph">（2）未能识别社会工程学技术。GPT-4未能成功识别利用从众心理进行产品构造推荐的钓鱼技巧，例如邮件中说明收件人收到消息是因为其好友订阅了产品，且好友是注册会员。由于没有发件人地址和邮件主题等更多信息，且没有紧迫感等可疑因素，所以被误分类为合法邮件。还有当邮件意图没有直接说明是中奖或转账等利益诱惑，而是电影票等金额较小且是具体的消费产品时，GPT-4会判断为合法的产品促销邮件，并没有识别为钓鱼特征作为可疑因素，从而将其分类为合法邮件。</div>
+      <div id="p0141" num="0136" class="description-paragraph">进一步地，本发明对开源大语言模型的性能实验分析如下：</div>
+      <div id="p0142" num="0137" class="description-paragraph">（1）LoRA微调前性能对比</div>
+      <div id="p0143" num="0138" class="description-paragraph">本发明在实验中对比了开源大语言模型Llama2-7B、BaiChuan2-7B、ChatGLM2-6B检测钓鱼邮件的性能，同样按照本发明提出的方法，直接将提示和邮件输入到模型中得到检测结果。在IWSPA_LLMs_dev数据集上的1110个输出中提取JSON结果时存在无法解析的情况：Llama2-7B有51个、BaiChuan2-7B有113个、ChatGLM2-6B有236个，错误原因是没有给出JSON格式的结论或者是给出JSON样式的文本格式有误。对于无法提取的输出结果，最终是由本发明人工启发式地解析得到。表9给出了三个模型在LoRA微调前的性能对比，在不带邮件头信息的IWSPA_LLMs_NH_dev数据集上，ChatGLM2-6B的表现是最好的，准确率为63.04%，F1分数为62.03%。Llama2-7B的表现其次，准确率为55.12%，召回率是三个模型中最高。而BaiChuan2-7B的表现相对较差，准确率为47.52%，F1分数为40.89%。在带有邮件头信息的IWSPA_LLMs_H_dev数据集上，ChatGLM2-6B的F1分数为63.64%，Llama2-7B的F1分数为67.41%，BaiChuan2-7B的性能仍然是最低的。</div>
+      <div id="p0144" num="0139" class="description-paragraph">表9 LoRA微调前的性能对比</div>
+      <div id="p0145" num="0140" class="description-paragraph">
+        <span class="patent-image-not-available"></span>
+      </div>
+      <div id="p0146" num="0141" class="description-paragraph">（2）LoRA微调后性能对比</div>
+      <div id="p0147" num="0142" class="description-paragraph">本发明基于IWSPA_LLMs_sft数据集，按照{“instruction”: 提示, “input”: 邮件, “output”: 输出结果}的JSON格式来构造监督微调数据集，最后在IWSPA_LLMs_dev数据集上验证LoRA微调后的效果。LoRA微调后仍存在无法解析JSON结果的情况：Llama2-7B有21个、BaiChuan2-7B有85个、ChatGLM2-6B有151个。结果表明LoRA微调后输出结果的格式虽然更加规范，但生成的结果仍存在较多无法解析的问题。表10给出了实验中三个模型在LoRA微调后的性能对比，在IWSPA_LLMs_NH_dev数据集上，Llama2-7B的性能最好，准确率为79.54%，F1分数为76.78%。BaiChuan2-7B的性能大幅提升，准确率为75.91%，召回率在三个模型中达到最高。而ChatGLM2-6B的性能最差，准确率为71.95%，F1分数为70.79%。在IWSPA_LLMs_H_dev数据集上，BaiChuan2-7B经过LoRA微调后的性能最高，准确率高达82.54%，F1分数为82.04%。Llama2-7B的准确率为76.19%，而ChatGLM2-6B的准确率只有69.44%。实验结果表明，Llama2-7B在不带有邮件头信息的数据集上性能最好，BaiChuan2-7B在带邮件头信息的数据集上性能最好，结果表明BaiChuan2-7B能更好地利用邮件头信息进行钓鱼邮件检测。ChatGLM2-6B在两种数据集上的整体性能相对较低，但在IWSPA_LLMs_H_dev数据集上的召回率最好，说明ChatGLM2-6B更偏向于将邮件分类为钓鱼邮件，但这会导致更多的误报。</div>
+      <div id="p0148" num="0143" class="description-paragraph">表10 LoRA微调后的性能对比</div>
+      <div id="p0149" num="0144" class="description-paragraph">
+        <span class="patent-image-not-available"></span>
+      </div>
+      <div id="p0150" num="0145" class="description-paragraph">（3）LoRA微调前后的性能提升</div>
+      <div id="p0151" num="0146" class="description-paragraph">这一部分本发明从表9和表10的实验结果中分析了LoRA微调对模型检测钓鱼邮件的性能提升。可以看出，对于Llama2-7B，LoRA微调对模型有着明显的正面效果，特别是在不带邮件头信息的数据集上，准确率提高了近25%，F1分数也提升了近10%。对于BaiChuan2-7B，在LoRA微调后的性能提升是最明显的，尤其是在带邮件头信息的数据集上，准确率提高了30%以上，这表明LoRA微调对BaiChuan2-7B模型非常有效。对于ChatGLM2-6B，LoRA微调后的性能也有所提升，但提升效果不如其他两个模型。可能是因为ChatGLM2-6B在微调前的性能相对较好，而且6B的参数量要少于其他两个模型，所以通过LoRA微调注入知识带来的性能提升没有其他两个模型明显。</div>
+      <div id="p0152" num="0147" class="description-paragraph">此外，图5（a）和图5（b）分别展示了三个模型在IWSPA_LLMs_NH_dev数据集和IWSPA_LLMs_H_dev数据集上LoRA微调前后误报率（FPR）和漏报率（FNR）的对比。对于Llama2-7B模型，微调后的FPR在两个数据集上都明显减少，说明LoRA微调提高了模型的准确性，减少了将合法邮件错误分类为钓鱼邮件的情况。而微调后的FNR在两个数据集上都有所增加，表明模型会漏报一些实际的钓鱼邮件，虽然LoRA微调增加了漏报率，但它大大减少了误报率。对于BaiChuan2-7B模型，LoRA微调后的FPR和FNR在两个数据集上都明显减少。与Llama2-7B相比，BaiChuan2-7B在两个指标上都有所提升，这可能说明BaiChuan2-7B更适合于LoRA微调，或者是因为其在微调前的表现不如Llama2-7B，因此有更大的改进空间。对于ChatGLM2-6B模型，LoRA微调后的FPR和FNR在两个数据集上都有所减少，FNR在IWSPA_LLMs_H_dev数据集上的减少更为明显，表明微调后ChatGLM2-6B减少了对实际钓鱼邮件的漏报。</div>
+      <div id="p0153" num="0148" class="description-paragraph">最后，本发明对GPT-3.5、GPT-4和开源大语言模型的对比如下：</div>
+      <div id="p0154" num="0149" class="description-paragraph">本发明通过实验对GPT-3.5、GPT-4、Llama2-7B、BaiChuan2-7B和ChatGLM2-6B模型检测钓鱼邮件的能力进行了对比分析，GPT-4直接检测钓鱼邮件的性能最强。开源大语言模型因为参数量和训练数据量要远少于GPT-4和GPT-3.5，而且训练中并没有使用太多有关钓鱼邮件检测等领域的数据，所以Llama2-7B等模型在直接检测钓鱼邮件上的性能要差很多。但通过本发明构造的IWSPA_LLMs_sft数据集对模型进行监督微调后，Llama2-7B和BaiChuan2-7B虽然与GPT-4仍有一定差距，但在准确率等指标上能够接近或者超过GPT-3.5，这表明在参数量较小的模型上注入特定领域知识的方法是可行的。为了能够更好地构建网络安全领域的大语言模型，本发明通过观察微调后的BaiChuan2-7B等模型的检测结果，分析其目前存在的不足和缺陷。</div>
+      <div id="p0155" num="0150" class="description-paragraph">（1）指令任务的完成度。本发明在提取模型的检测结果时发现，GPT-3.5和GPT-4的指令完成度较高，没有出现JSON结果无法解析的情况。而Llama2-7B等模型存在只进行了钓鱼邮件分析，而没有执行JSON格式的输出，即使输入邮件的长度较短也会出现这种情况。还有输出的JSON文本存在格式问题，例如没有以逗号结尾、字段的键名拼写错误、缺少字段键名等。此外，对于“phishing_score”字段的分数，有的输出结果没有严格按照提示的要求在0到10范围内打分，而是按照100分的范围给出了30分。</div>
+      <div id="p0156" num="0151" class="description-paragraph">（2）钓鱼分析和检测结果的不一致性。GPT-3.5和GPT-4对钓鱼邮件的分析和最终JSON格式的输出保持一致，而Llama2-7B等模型存在不一致性。例如在检测错误的结果中，“phishing_score”给出的是1分，而“phishing”标记的却是True；或者是“phishing_score”给出7分，而“phishing”标记为False。此外，分析过程和JSON结果也存在不一致性，例如分析中明确说明是合法邮件，“phishing”标记为False，但“phishing_score”却给出了8分。</div>
+      <div id="p0157" num="0152" class="description-paragraph">（3）检测结果的幻觉问题。在本发明构造的数据集中存在Base64编码后的邮件文本，在所有模型中只有GPT-4检测出文本经过Base64编码，并解码出邮件原文。本发明分析了Llama2-7B等模型的输出结果发现，它们并没有识别出这是Base64编码后的内容，而且在分析过程中出现了不存在的发件人地址、主题和正文，与解码后的邮件内容也并不相符。这种幻觉问题在构建垂直领域大模型时值得人们关注。</div>
+      <div id="p0158" num="0153" class="description-paragraph">综上所述，本发明提出了一种使用LLMs检测钓鱼邮件的方法，通过本发明设计的提示模板指导模型分析和识别邮件中的钓鱼技术。为了评估方法的有效性，本发明构造了数据集IWSPA_LLMs并进行了两个实验：一个实验是使用GPT-4、GPT-3.5、Llama2-7B、BaiChuan2-7B和ChatGLM2-6B直接检测钓鱼邮件，另一个实验是通过LoRA微调Llama2-7B、BaiChuan2-7B和ChatGLM2-6B后去检测钓鱼邮件。实验结果表明，GPT-4的性能最好，误报率和漏报率都是最低的，可以准确分析和识别发件人地址、邮件主题和正文中的可疑因素，以及钓鱼链接和邮件意图。此外，开源大语言模型在LoRA微调后性能都有所提升，其中BaiChuan2-7B的提升效果最明显，但和GPT-4相比仍有一定的差距。本发明优化了LLMs检测钓鱼邮件的提示和方法，并对构建网络安全领域的大语言模型工作进行了探索。本发明的研究表明，LLMs可以适应不断发展的网络钓鱼威胁和策略，辅助研究人员发现新的钓鱼技术，为检测网络钓鱼攻击提供了新的研究方向。</div>
+      <div id="p0159" num="0154" class="description-paragraph">当然，本发明还可有其他多种实施例，在不背离本发明精神及其实质的情况下，熟悉本领域的技术人员当然可根据本发明作出各种相应的改变和变形，但这些相应的改变和变形都应属于本发明所附的权利要求的保护范围。</div>
+    </mode-for-invention>
+  </div>
+  </div>
+  </section>
+
+  <section itemprop="claims" itemscope>
+    <h2>Claims (<span itemprop="count">4</span>)</h2>
+    
+    <div itemprop="content" html><div mxw-id="PCLM456886251" lang="ZH" load-source="patent-office" class="claims">
+    <div class="claim"> <div id="zh-cl0001" num="0001" class="claim">
+      <div class="claim-text">1.一种基于大语言模型的钓鱼邮件检测方法，其特征在于，包括以下步骤：</div>
+      <div class="claim-text">将待测邮件进行预处理，使得待测邮件的长度控制在设定范围内；</div>
+      <div class="claim-text">将预处理后的待测邮件写入设定的提示模板中，其中，所述提示模板包括问题部分和邮件部分，且邮件部分用于写入预处理后的待测邮件，问题部分设置为：分析邮件的可疑因素以及是否包含社会工程学技术、分析邮件的URL、识别邮件意图、给出邮件是否为钓鱼邮件的结论及理由、以JSON格式输出判断结果；</div>
+      <div class="claim-text">将写有预处理后的待测邮件的提示模板输入大语言模型，由大语言模型判断待测邮件是否为钓鱼邮件，其中，大语言模型为开源大语言模型Llama2、BaiChuan2、ChatGLM2；</div>
+      <div class="claim-text">采用LoRA微调技术调整开源大语言模型Llama2、BaiChuan2、ChatGLM2的网络参数，以此提升开源大语言模型对钓鱼邮件的检测效果，调整方法为：</div>
+      <div class="claim-text">基于ACM IWSPA 2018的反网络钓鱼试点中提供的IWSPA数据集构造初始数据集，其中，IWSPA数据集中包括仅包含正文内容的电子邮件IWSPA_NH、包含完整邮件头信息和正文内容的电子邮件IWSPA_H；</div>
+      <div class="claim-text">剔除初始数据集中长度大于设定范围的邮件，仅保留长度在设定范围内的邮件作为筛选后数据集；</div>
+      <div class="claim-text">将筛选后数据集按照1:1的比例切分成验证数据集和准监督微调数据集，其中，验证数据集用于GPT-3.5、GPT-4、Llama2、BaiChuan2以及ChatGLM2检测钓鱼邮件性能的比较；</div>
+      <div class="claim-text">将准监督微调数据集输入GPT-4，得到GPT-4对准监督微调数据集中各邮件样本的判断结果和分析回答，去除判断结果错误以及低质量分析回答对应的邮件样本，将剩余邮件样本组成最终的监督微调数据集；</div>
+      <div class="claim-text">将监督微调数据集分别输入开源大语言模型Llama2、BaiChuan2、ChatGLM2，判断设定的损失函数是否满足要求，若为是，则完成开源大语言模型网络参数的调整，若为否，则通过低秩分解矩阵来更新开源大语言模型中的权重矩阵，再将监督微调数据集分别输入权重矩阵调整后的开源大语言模型，重新判断损失函数是否满足要求；以此类推，直到完成开源大语言模型网络参数的调整。</div>
+    </div>
+    </div> <div class="claim-dependent"> <div id="zh-cl0002" num="0002" class="claim">
+      <div class="claim-text">
+        <claim-ref idref="zh-cl0001"> </claim-ref>
+      </div>
+      <div class="claim-text">2.如权利要求1所述的一种基于大语言模型的钓鱼邮件检测方法，其特征在于，所述提示模板具体为：</div>
+      <div class="claim-text">您是一名网络安全专家和社会工程学专家，负责检查电子邮件以确定它是钓鱼邮件还是合法邮件，要完成此任务，请执行以下子任务：</div>
+      <div class="claim-text">1).分析邮件的可疑因素以及是否包含社会工程学技术：分析邮件发件人地址、主题和正文中是否存在用于网络钓鱼攻击的社会工程学技术，指出发件人地址、主题或正文中发现的任何可疑因素；</div>
+      <div class="claim-text">2).分析邮件的URL：如果邮件正文包含URL链接，提取出URL的特征并判断是否可疑，如果邮件正文不包含URL链接，则回答无；</div>
+      <div class="claim-text">3).识别邮件意图：结合邮件的上下文内容和关键词来分析发件人的意图是否可疑；</div>
+      <div class="claim-text">4).陈述您对该电子邮件是钓鱼邮件还是合法邮件的结论，并解释理由，如果没有足够的证据做出判断，请回答“未知”；</div>
+      <div class="claim-text">5).以JSON格式输出您的判断结果，其中，判断结果包含以下关键字：</div>
+      <div class="claim-text">- phishing_score: int，其中，phishing_score用于表示钓鱼风险，int表示风险等级，等级从低至高分别为0到10；</div>
+      <div class="claim-text">- suspicious_url: boolean，其中，suspicious_url用于表示邮件中的URL链接是否可疑，如果可疑则boolean为True，如果不可疑则boolean为False；</div>
+      <div class="claim-text">- phishing: boolean，其中，phishing用于表示该邮件是钓鱼邮件还是合法邮件，如果为钓鱼邮件则boolean为True，如果为合法邮件则boolean为False；</div>
+      <div class="claim-text">限制：</div>
+      <div class="claim-text">- 邮件内容可能被缩短和简化；</div>
+      <div class="claim-text">社会工程学技术举例：</div>
+      <div class="claim-text">- 紧迫感：用时间期限催促收信人立即采取行动；</div>
+      <div class="claim-text">- 威胁恐吓：采用安全警告恐吓收信人；</div>
+      <div class="claim-text">- 欲望诱惑：提供奖励引诱收信人点击链接；</div>
+      <div class="claim-text">- 冒充亲友或同事：获取信任来骗取钱财；</div>
+      <div class="claim-text">Email：</div>
+      <div class="claim-text">{预处理后的待测邮件}。</div>
+    </div>
+    </div> <div class="claim-dependent"> <div id="zh-cl0003" num="0003" class="claim">
+      <div class="claim-text">
+        <claim-ref idref="zh-cl0001"> </claim-ref>
+      </div>
+      <div class="claim-text">3.如权利要求1所述的一种基于大语言模型的钓鱼邮件检测方法，其特征在于，将待测邮件进行预处理，使得待测邮件的长度控制在设定范围内具体为：</div>
+      <div class="claim-text">计算待测邮件的token长度，如果token长度超出了设定范围，则按照设定范围中的最大长度对待测邮件进行截取，只保留设定范围内的邮件文本。</div>
+    </div>
+    </div> <div class="claim-dependent"> <div id="zh-cl0004" num="0004" class="claim">
+      <div class="claim-text">
+        <claim-ref idref="zh-cl0001"> </claim-ref>
+        <claim-ref idref="zh-cl0002"> </claim-ref>
+        <claim-ref idref="zh-cl0003"> </claim-ref>
+      </div>
+      <div class="claim-text">4.如权利要求1~3任一权利要求所述的一种基于大语言模型的钓鱼邮件检测方法，其特征在于，采用准确率、精确度、召回率、F1分数、误报率、漏报率作为评估大语言模型检测钓鱼邮件性能的指标。</div>
+    </div>
+  </div> </div>
+  </div>
+  </section>
+
+  <section itemprop="application" itemscope>
+
+    <section itemprop="metadata" itemscope>
+      <span itemprop="applicationNumber">CN202410095168.9A</span>
+      <span itemprop="priorityDate">2024-01-24</span>
+      <span itemprop="filingDate">2024-01-24</span>
+      <span itemprop="title">一种基于大语言模型的钓鱼邮件检测方法 
+       </span>
+      <span itemprop="ifiStatus">Active</span>
+      
+      <a href="/patent/CN117614748B/zh">
+        <span itemprop="representativePublication">CN117614748B</span>
+        (<span itemprop="primaryLanguage">zh</span>)
+      </a>
+    </section>
+
+    <h2>Priority Applications (1)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Application Number</th>
+          <th>Priority Date</th>
+          <th>Filing Date</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr itemprop="priorityApps" itemscope repeat>
+          <td>
+            <span itemprop="applicationNumber">CN202410095168.9A</span>
+            
+            <a href="/patent/CN117614748B/zh">
+              <span itemprop="representativePublication">CN117614748B</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+            </a>
+          </td>
+          <td itemprop="priorityDate">2024-01-24</td>
+          <td itemprop="filingDate">2024-01-24</td>
+          <td itemprop="title">一种基于大语言模型的钓鱼邮件检测方法 
+       </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Applications Claiming Priority (1)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Application Number</th>
+          <th>Priority Date</th>
+          <th>Filing Date</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr itemprop="appsClaimingPriority" itemscope repeat>
+          <td>
+            <span itemprop="applicationNumber">CN202410095168.9A</span>
+            <a href="/patent/CN117614748B/zh">
+              <span itemprop="representativePublication">CN117614748B</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+            </a>
+          </td>
+          <td itemprop="priorityDate">2024-01-24</td>
+          <td itemprop="filingDate">2024-01-24</td>
+          <td itemprop="title">一种基于大语言模型的钓鱼邮件检测方法 
+       </td>
+        </tr>
+      </tbody>
+    </table>
+
+    
+
+    
+
+    <h2>Publications (2)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Publication Number</th>
+          <th>Publication Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr itemprop="pubs" itemscope repeat>
+          <td>
+            <span itemprop="publicationNumber">CN117614748A</span>
+            
+            <a href="/patent/CN117614748A/zh">
+              CN117614748A
+              (<span itemprop="primaryLanguage">zh</span>)
+            </a>
+          </td>
+          <td itemprop="publicationDate">2024-02-27</td>
+        </tr>
+        <tr itemprop="pubs" itemscope repeat>
+          <td>
+            <span itemprop="publicationNumber">CN117614748B</span>
+            
+            <span itemprop="thisPatent">true</span>
+            <a href="/patent/CN117614748B/zh">
+              CN117614748B
+              (<span itemprop="primaryLanguage">zh</span>)
+            </a>
+          </td>
+          <td itemprop="publicationDate">2024-04-30</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </section>
+
+  <section itemprop="family" itemscope>
+    <h1>Family</h1>
+    <h2>ID=89953909</h2>
+
+    <h2>Family Applications (1)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Application Number</th>
+          <th>Title</th>
+          <th>Priority Date</th>
+          <th>Filing Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr itemprop="applications" itemscope repeat>
+          <td>
+            <span itemprop="applicationNumber">CN202410095168.9A</span>
+            <span itemprop="ifiStatus">Active</span>
+            
+            <a href="/patent/CN117614748B/zh">
+              <span itemprop="representativePublication">CN117614748B</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+            </a>
+          </td>
+          <td itemprop="priorityDate">2024-01-24</td>
+          <td itemprop="filingDate">2024-01-24</td>
+          <td itemprop="title">一种基于大语言模型的钓鱼邮件检测方法 
+       </td>
+        </tr>
+      </tbody>
+    </table>
+
+    
+
+    
+
+    <h2>Country Status (1)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Country</th>
+          <th>Link</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr itemprop="countryStatus" itemscope repeat>
+          <td>
+            <span itemprop="countryCode">CN</span>
+            (<span itemprop="num">1</span>)
+            <meta itemprop="thisCountry" content="true">
+          </td>
+          <td>
+            <a href="/patent/CN117614748B/zh">
+              <span itemprop="representativePublication">CN117614748B</span>
+              (<span itemprop="primaryLanguage">zh</span>)
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    
+
+    <h2>Families Citing this family (1)</h2>
+    <table>
+      <caption>* Cited by examiner, † Cited by third party</caption>
+      <thead>
+        <tr>
+          <th>Publication number</th>
+          <th>Priority date</th>
+          <th>Publication date</th>
+          <th>Assignee</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr itemprop="forwardReferencesFamily" itemscope repeat>
+          <td>
+            <a href="/patent/CN119675890A/zh">
+              <span itemprop="publicationNumber">CN119675890A</span>
+              (<span itemprop="primaryLanguage">zh</span>)
+            </a>
+            <span itemprop="examinerCited">*</span>
+            
+          </td>
+          <td itemprop="priorityDate">2024-10-15</td>
+          <td itemprop="publicationDate">2025-03-21</td>
+          <td><span itemprop="assigneeOriginal">北京亚鸿世纪科技发展有限公司</span></td>
+          <td itemprop="title">一种基于搜索引擎和生成式语言模型的恶意域名研判方法 
+       </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Citations (2)</h2>
+    <table>
+      <caption>* Cited by examiner, † Cited by third party</caption>
+      <thead>
+        <tr>
+          <th>Publication number</th>
+          <th>Priority date</th>
+          <th>Publication date</th>
+          <th>Assignee</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr itemprop="backwardReferencesOrig" itemscope repeat>
+          <td>
+            <a href="/patent/KR102575129B1/ko">
+              <span itemprop="publicationNumber">KR102575129B1</span>
+              (<span itemprop="primaryLanguage">ko</span>)
+            </a>
+            <span itemprop="examinerCited">*</span>
+            
+          </td>
+          <td itemprop="priorityDate">2023-06-29</td>
+          <td itemprop="publicationDate">2023-09-06</td>
+          <td>
+            <span itemprop="assigneeOriginal">주식회사 이글루코퍼레이션</span>
+          </td>
+          <td itemprop="title">언어 모델을 이용한 보안 위협 탐지 보고서 생성 장치 및 방법 
+       </td>
+        </tr>
+        <tr itemprop="backwardReferencesOrig" itemscope repeat>
+          <td>
+            <a href="/patent/CN117240575A/zh">
+              <span itemprop="publicationNumber">CN117240575A</span>
+              (<span itemprop="primaryLanguage">zh</span>)
+            </a>
+            <span itemprop="examinerCited">*</span>
+            
+          </td>
+          <td itemprop="priorityDate">2023-10-10</td>
+          <td itemprop="publicationDate">2023-12-15</td>
+          <td>
+            <span itemprop="assigneeOriginal">国网青海省电力公司电力科学研究院</span>
+          </td>
+          <td itemprop="title">网络攻击数据处理方法、装置、设备及介质 
+       </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Family Cites Families (2)</h2>
+    <table>
+      <caption>* Cited by examiner, † Cited by third party</caption>
+      <thead>
+        <tr>
+          <th>Publication number</th>
+          <th>Priority date</th>
+          <th>Publication date</th>
+          <th>Assignee</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr itemprop="backwardReferencesFamily" itemscope repeat>
+          <td>
+            <a href="/patent/US20220094713A1/en">
+              <span itemprop="publicationNumber">US20220094713A1</span>
+              (<span itemprop="primaryLanguage">en</span>)
+            </a>
+            <span itemprop="examinerCited">*</span>
+            
+          </td>
+          <td itemprop="priorityDate">2020-09-21</td>
+          <td itemprop="publicationDate">2022-03-24</td>
+          <td><span itemprop="assigneeOriginal">Sophos Limited</span></td>
+          <td itemprop="title">Malicious message detection 
+       </td>
+        </tr>
+        <tr itemprop="backwardReferencesFamily" itemscope repeat>
+          <td>
+            <a href="/patent/US20240020486A1/en">
+              <span itemprop="publicationNumber">US20240020486A1</span>
+              (<span itemprop="primaryLanguage">en</span>)
+            </a>
+            <span itemprop="examinerCited">*</span>
+            
+          </td>
+          <td itemprop="priorityDate">2022-07-12</td>
+          <td itemprop="publicationDate">2024-01-18</td>
+          <td><span itemprop="assigneeOriginal">Salesforce, Inc.</span></td>
+          <td itemprop="title">Systems and methods for finetuning with learned hidden representations of parameter changes 
+     </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ul>
+      <li itemprop="applicationsByYear" itemscope repeat>
+        <span itemprop="year">2024</span>
+        <ul>
+          <li itemprop="application" itemscope repeat>
+            <span itemprop="filingDate">2024-01-24</span>
+            <span itemprop="countryCode">CN</span>
+            <span itemprop="applicationNumber">CN202410095168.9A</span>
+            <a href="/patent/CN117614748B/zh"><span itemprop="documentId">patent/CN117614748B/zh</span></a>
+            <span itemprop="legalStatusCat">active</span>
+            <span itemprop="legalStatus">Active</span>
+            <span itemprop="thisApp" content="true" bool></span>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    </section>
+
+  <section>
+    <h2>Patent Citations (2)</h2>
+    <table>
+      <caption>* Cited by examiner, † Cited by third party</caption>
+      <thead>
+        <tr>
+          <th>Publication number</th>
+          <th>Priority date</th>
+          <th>Publication date</th>
+          <th>Assignee</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr itemprop="backwardReferences" itemscope repeat>
+          <td>
+            <a href="/patent/KR102575129B1/ko">
+              <span itemprop="publicationNumber">KR102575129B1</span>
+              (<span itemprop="primaryLanguage">ko</span>)
+            </a>
+            <span itemprop="examinerCited">*</span>
+            
+          </td>
+          <td itemprop="priorityDate">2023-06-29</td>
+          <td itemprop="publicationDate">2023-09-06</td>
+          <td><span itemprop="assigneeOriginal">주식회사 이글루코퍼레이션</span></td>
+          <td itemprop="title">언어 모델을 이용한 보안 위협 탐지 보고서 생성 장치 및 방법 
+       </td>
+        </tr>
+        <tr itemprop="backwardReferences" itemscope repeat>
+          <td>
+            <a href="/patent/CN117240575A/zh">
+              <span itemprop="publicationNumber">CN117240575A</span>
+              (<span itemprop="primaryLanguage">zh</span>)
+            </a>
+            <span itemprop="examinerCited">*</span>
+            
+          </td>
+          <td itemprop="priorityDate">2023-10-10</td>
+          <td itemprop="publicationDate">2023-12-15</td>
+          <td><span itemprop="assigneeOriginal">国网青海省电力公司电力科学研究院</span></td>
+          <td itemprop="title">网络攻击数据处理方法、装置、设备及介质 
+       </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  
+
+  
+
+  <section>
+    <h2>Also Published As</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Publication number</th>
+          <th>Publication date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr itemprop="docdbFamily" itemscope repeat>
+          <td>
+            <a href="/patent/CN117614748A/zh">
+              <span itemprop="publicationNumber">CN117614748A</span>
+              (<span itemprop="primaryLanguage">zh</span>)
+            </a>
+          </td>
+          <td itemprop="publicationDate">2024-02-27</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Similar Documents</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Publication</th>
+          <th>Publication Date</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="16572878325757030474">
+              <a href="/scholar/16572878325757030474"><span itemprop="scholarAuthors">Alhogail et al.</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2021">2021</time>
+            
+          </td>
+          <td itemprop="title">Applying machine learning and natural language processing to detect phishing email</td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="41955640249173873">
+              <a href="/scholar/41955640249173873"><span itemprop="scholarAuthors">Gutierrez et al.</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2018">2018</time>
+            
+          </td>
+          <td itemprop="title">Learning from the ones that got away: Detecting new forms of phishing attacks</td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/US11023478B2/en">
+                <span itemprop="publicationNumber">US11023478B2</span>
+                (<span itemprop="primaryLanguage">en</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2021-06-01">2021-06-01</time>
+            
+            
+          </td>
+          <td itemprop="title">Determining temporal categories for a domain of content for natural language processing 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/US20200234109A1/en">
+                <span itemprop="publicationNumber">US20200234109A1</span>
+                (<span itemprop="primaryLanguage">en</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2020-07-23">2020-07-23</time>
+            
+            
+          </td>
+          <td itemprop="title">Cognitive Mechanism for Social Engineering Communication Identification and Response 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN117614748B/zh">
+                <span itemprop="publicationNumber">CN117614748B</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2024-04-30">2024-04-30</time>
+            
+            
+          </td>
+          <td itemprop="title">一种基于大语言模型的钓鱼邮件检测方法 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="1446899947931385283">
+              <a href="/scholar/1446899947931385283"><span itemprop="scholarAuthors">Patel et al.</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2024">2024</time>
+            
+          </td>
+          <td itemprop="title">Evaluating the efficacy of large language models in identifying phishing attempts</td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="10252259831704778629">
+              <a href="/scholar/10252259831704778629"><span itemprop="scholarAuthors">Lu et al.</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2022">2022</time>
+            
+          </td>
+          <td itemprop="title">A GAN-based method for generating SQL injection attack samples</td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="13118295841889180978">
+              <a href="/scholar/13118295841889180978"><span itemprop="scholarAuthors">Rabbi et al.</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2023">2023</time>
+            
+          </td>
+          <td itemprop="title">Phishy? detecting phishing emails using ml and nlp</td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="9523066898104319760">
+              <a href="/scholar/9523066898104319760"><span itemprop="scholarAuthors">Seljan et al.</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2023">2023</time>
+            
+          </td>
+          <td itemprop="title">Information Extraction from Security-Related Datasets.</td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="7899247569178617817">
+              <a href="/scholar/7899247569178617817"><span itemprop="scholarAuthors">Opara et al.</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2025">2025</time>
+            
+          </td>
+          <td itemprop="title">Evaluating spam filters and Stylometric Detection of AI-generated phishing emails</td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="12887874374226793558">
+              <a href="/scholar/12887874374226793558"><span itemprop="scholarAuthors">Yu et al.</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2020">2020</time>
+            
+          </td>
+          <td itemprop="title">An explainable method of phishing emails generation and its application in machine learning</td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="14331829950884248262">
+              <a href="/scholar/14331829950884248262"><span itemprop="scholarAuthors">Verma</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2023">2023</time>
+            
+          </td>
+          <td itemprop="title">Detection of Phishing in Mobile Instant Messaging Using Natural Language Processing and Machine Learning</td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="2160568935907544818">
+              <a href="/scholar/2160568935907544818"><span itemprop="scholarAuthors">Falade et al.</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2024">2024</time>
+            
+          </td>
+          <td itemprop="title">Toxicity prediction in reddit</td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="2789012067156087271">
+              <a href="/scholar/2789012067156087271"><span itemprop="scholarAuthors">Xu et al.</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2024">2024</time>
+            
+          </td>
+          <td itemprop="title">Enhancing Mobile Cybersecurity: Smishing Detection Using Ensemble Learning and SMOTE</td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="7987763736868665433">
+              <a href="/scholar/7987763736868665433"><span itemprop="scholarAuthors">Pallavi et al.</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2023">2023</time>
+            
+          </td>
+          <td itemprop="title">Efficient Spam Email Classification Using Machine Learning Algorithms</td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="2984427839290389986">
+              <a href="/scholar/2984427839290389986"><span itemprop="scholarAuthors">Baki et al.</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2024">2024</time>
+            
+          </td>
+          <td itemprop="title">Real-time, evidence-based alerts for protection from phishing attacks</td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="14696472082933779417">
+              <a href="/scholar/14696472082933779417"><span itemprop="scholarAuthors">Tang et al.</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2025">2025</time>
+            
+          </td>
+          <td itemprop="title">An Investigation of Large Language Models and Their Vulnerabilities in Spam Detection</td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="10151618839992343138">
+              <a href="/scholar/10151618839992343138"><span itemprop="scholarAuthors">Oye et al.</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2024">2024</time>
+            
+          </td>
+          <td itemprop="title">The Role of Natural Language Processing in Cybersecurity</td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="5207001935868868529">
+              <a href="/scholar/5207001935868868529"><span itemprop="scholarAuthors">Hosseinpour et al.</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2024">2024</time>
+            
+          </td>
+          <td itemprop="title">Complex-network based model for SMS spam filtering</td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="17415035880291970496">
+              <a href="/scholar/17415035880291970496"><span itemprop="scholarAuthors">Brandqvist et al.</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2023">2023</time>
+            
+          </td>
+          <td itemprop="title">Phishing detection challenges for private and organizational users: A comparative study</td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="6612936405945273267">
+              <a href="/scholar/6612936405945273267"><span itemprop="scholarAuthors">Pokhrel et al.</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2024">2024</time>
+            
+          </td>
+          <td itemprop="title">An Adversarial Machine Learning Approach on Securing Large Language Model with Vigil, an Open-Source Initiative</td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="69295978088066130">
+              <a href="/scholar/69295978088066130"><span itemprop="scholarAuthors">Ismail et al.</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2010">2010</time>
+            
+          </td>
+          <td itemprop="title">Detecting worms using data mining techniques: learning in the presence of class noise</td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="3884119238907864380">
+              <a href="/scholar/3884119238907864380"><span itemprop="scholarAuthors">Li et al.</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2025">2025</time>
+            
+          </td>
+          <td itemprop="title">Safety alignment can be not superficial with explicit safety signals</td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="12335076672604643497">
+              <a href="/scholar/12335076672604643497"><span itemprop="scholarAuthors">Suciu</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2021">2021</time>
+            
+          </td>
+          <td itemprop="title">Data-Driven Techniques for Vulnerability Assessments</td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="12437869648218339599">
+              <a href="/scholar/12437869648218339599"><span itemprop="scholarAuthors">Yamah</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2023">2023</time>
+            
+          </td>
+          <td itemprop="title">Detecting Spear-phishing Attacks using Machine Learning</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Legal Events</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Code</th>
+          <th>Title</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr itemprop="legalEvents" itemscope repeat>
+          <td><time itemprop="date" datetime="2024-02-27">2024-02-27</time></td>
+          <td itemprop="code">PB01</td>
+          <td itemprop="title">Publication</td>
+          <td>
+          </td>
+        </tr>
+        <tr itemprop="legalEvents" itemscope repeat>
+          <td><time itemprop="date" datetime="2024-02-27">2024-02-27</time></td>
+          <td itemprop="code">PB01</td>
+          <td itemprop="title">Publication</td>
+          <td>
+          </td>
+        </tr>
+        <tr itemprop="legalEvents" itemscope repeat>
+          <td><time itemprop="date" datetime="2024-03-15">2024-03-15</time></td>
+          <td itemprop="code">SE01</td>
+          <td itemprop="title">Entry into force of request for substantive examination</td>
+          <td>
+          </td>
+        </tr>
+        <tr itemprop="legalEvents" itemscope repeat>
+          <td><time itemprop="date" datetime="2024-03-15">2024-03-15</time></td>
+          <td itemprop="code">SE01</td>
+          <td itemprop="title">Entry into force of request for substantive examination</td>
+          <td>
+          </td>
+        </tr>
+        <tr itemprop="legalEvents" itemscope repeat>
+          <td><time itemprop="date" datetime="2024-04-30">2024-04-30</time></td>
+          <td itemprop="code">GR01</td>
+          <td itemprop="title">Patent grant</td>
+          <td>
+          </td>
+        </tr>
+        <tr itemprop="legalEvents" itemscope repeat>
+          <td><time itemprop="date" datetime="2024-04-30">2024-04-30</time></td>
+          <td itemprop="code">GR01</td>
+          <td itemprop="title">Patent grant</td>
+          <td>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+</article>
+
+    </search-app>
+    
+    <script></script>
+    <script type="text/javascript" src="//www.gstatic.com/feedback/api.js"></script>
+    <script type="text/javascript" src="//www.gstatic.com/feedback/js/help/prod/service/lazy.min.js"></script>
+    <script type="text/javascript">
+      if (window.help && window.help.service) {
+        helpApi = window.help.service.Lazy.create(0, {apiKey: 'AIzaSyDTEI_0tLX4varJ7bwK8aT-eOI5qr3BmyI', locale: 'en-US'});
+        window.requestedSurveys = new Set();
+        window.requestSurvey = function(triggerId) {
+          if (window.requestedSurveys.has(triggerId)) {
+            return;
+          }
+          window.requestedSurveys.add(triggerId);
+          helpApi.requestSurvey({
+            triggerId: triggerId,
+            enableTestingMode: false,
+            callback: (requestSurveyCallbackParam) => {
+              if (!requestSurveyCallbackParam.surveyData) {
+                return;
+              }
+              helpApi.presentSurvey({
+                productData: {
+                  productVersion: window.version,
+                  customData: {
+                    "experiments": "",
+                  },
+                },
+                surveyData: requestSurveyCallbackParam.surveyData,
+                colorScheme: 1,
+                customZIndex: 10000,
+              });
+            }
+          });
+        };
+
+        window.requestSurvey('YXTwAsvoW0kedxbuTdH0RArc9VhT');
+      }
+    </script>
+    <script src="/sw/null_loader.js"></script>
+  </body>
+</html>
